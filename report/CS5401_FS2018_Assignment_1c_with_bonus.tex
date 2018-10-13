@@ -1,0 +1,34 @@
+\documentclass[11pt]{article}
+\usepackage[left=3cm, right=3cm, top=2cm]{geometry}
+\usepackage{graphicx}
+
+% Prevent heading numbers
+\setcounter{secnumdepth}{0}
+
+% Command definitions 
+\newcommand{\fitnessplotcaption}[1]{\caption{Evaluations versus Average Local Fitness and Evaluations versus 
+    Local Best Fitness for the \textbf{{#1}}, Averaged Over All Runs}}
+
+\newcommand{\addgraphic}[1]{\centerline{\includegraphics[scale=0.6]{report/figures/{#1}.png}}}
+
+\newcommand{\tablecaption}[1]{\caption{Statistical Analysis performed on the {#1}, EA configurations}}
+
+\title{TODO}
+\author{William  Lorey \\ wwlytc@mst.edu}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\section{Introduction}
+
+\begin{figure}
+    \addgraphic{website_puzzle_validity_enforced_graph}
+    \fitnessplotcaption{Penalty Function EA with the Validity Enforced, Provided Puzzle}
+    \label{fig:website_puzzle_validity_enforced_graph}
+\end{figure}
+
+\end{document}
