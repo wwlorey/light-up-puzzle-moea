@@ -7,9 +7,9 @@ import random
 import util.seed as seed_class
 
 
-class EADriver:
+class MOEADriver:
     def __init__(self, config):
-        """Initializes the EADriver class.
+        """Initializes the MOEADriver class.
         
         Where config is a Config object. 
         """
@@ -112,6 +112,9 @@ class EADriver:
         """ 
         for genotype in genotypes:
             self.phenotype.get_fitness(genotype)
+            self.determine_domination()
+
+            # TODO: Update log file & soln file w/ new constraints
 
             # Calculate average fitness
             self.total_fitness_sum += genotype.fitness
@@ -397,3 +400,41 @@ class EADriver:
 
         # Make the genotypes fight, return the winner
         return max(arena_genotypes, key=lambda x : x.fitness)
+
+
+    def determine_domination(self):
+        """Generates a transient domination table and uses it to produce and return
+        front classifications in the form of TODO SOME DATA STRUCTURE.
+        """
+
+        def better(genotype_a, genotype_b):
+            """Returns True if genotype_a dominates genotype_b, False otherwise."""
+            return genotype_a.fitness >= genotype_b.fitness \
+                and genotype_a.black_cell_constraints_violated <= genotype_b.black_cell_constraints_violated \
+                and genotype_a.bulb_shine_constraints_violated <= genotype_b.bulb_shine_constraints_violated \
+                and (genotype_a.fitness > genotype_b.fitness \
+                or genotype_a.black_cell_constraints_violated < genotype_b.black_cell_constraints_violated \
+                or genotype_a.bulb_shine_constraints_violated < genotype_b.bulb_shine_constraints_violated)
+
+
+        # Create the domination table
+        # TODO: These calculations can be optimized for time
+
+        for dominating_genotype in self.population:
+            dominating_genotype.dominates = []
+
+            for dominated_genotype in self.population:
+                if better(dominating_genotype, dominated_genotype):
+                    dominating_genotype.dominates.append(dominating_genotype)
+        
+        # Create the Pareto fronts (levels of domination)
+        fronts = []
+
+        for genotype_to_add in self.population:
+            if fronts:
+                # Determine the next element placement
+                pass
+
+            else:
+                # Add the 0th element
+                fronts.append([genotype_to_add])

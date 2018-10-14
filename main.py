@@ -17,7 +17,7 @@ if __name__ == '__main__':
 
 
     # Initialize the EA driver and its run variables
-    ea_driver = ea_driver_class.EADriver(config)
+    ea_driver = ea_driver_class.MOEADriver(config)
 
 
     # Run the EA

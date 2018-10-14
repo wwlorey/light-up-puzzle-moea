@@ -340,10 +340,10 @@ class LightUpPuzzle:
         Note: the type of fitness function used is specified in config.
         """
         # Get number of shined squares
-        bulb_on_bulb_shine_count = self.update_shined_squares(genotype)
+        genotype.bulb_shine_constraints_violated = self.update_shined_squares(genotype)
         
         # Get number of black cell constraints violated and the corresponding black cell coordinates 
-        invalid_black_cell_constraint_count, invalid_black_coords = self.update_black_square_conditions(genotype)
+        genotype.black_cell_constraints_violated, invalid_black_coords = self.update_black_square_conditions(genotype)
 
         # Calculate the genotype's fitness
         genotype.fitness = len(self.shined_squares) / self.num_possible_lit_cells 
@@ -351,13 +351,13 @@ class LightUpPuzzle:
         if int(self.config.settings['use_penalty_function']):
             # Use the constraint satisfaction fitness function
             # Penalize the fitness for any validation infringements
-            genotype.fitness -= float(self.config.settings['penalty_coefficient']) * (bulb_on_bulb_shine_count + invalid_black_cell_constraint_count) / self.num_possible_lit_cells
+            genotype.fitness -= float(self.config.settings['penalty_coefficient']) * (genotype.bulb_shine_constraints_violated + genotype.black_cell_constraints_violated) / self.num_possible_lit_cells
         
-        elif bulb_on_bulb_shine_count or invalid_black_cell_constraint_count:
+        elif genotype.bulb_shine_constraints_violated or genotype.black_cell_constraints_violated:
             if int(self.config.settings['use_repair_function']):
                 # Repair the defective genotype
                 for _ in range(int(self.config.settings['repair_retry_count'])):
-                    self.repair(genotype, bulb_on_bulb_shine_count, invalid_black_cell_constraint_count, invalid_black_coords)
+                    self.repair(genotype, genotype.bulb_shine_constraints_violated, genotype.black_cell_constraints_violated, invalid_black_coords)
 
                     if genotype.fitness != 0:
                         break
