@@ -339,25 +339,6 @@ class LightUpPuzzle:
         # Calculate the genotype's fitness
         genotype.shine_ratio = len(self.shined_squares) / self.num_possible_lit_cells 
 
-        # if int(self.config.settings['use_penalty_function']):
-        #     # Use the constraint satisfaction fitness function
-        #     # Penalize the fitness for any validation infringements
-        #     genotype.fitness -= float(self.config.settings['penalty_coefficient']) * (genotype.bulb_shine_constraints_violated + genotype.black_cell_constraints_violated) / self.num_possible_lit_cells
-        
-        # elif genotype.bulb_shine_constraints_violated or genotype.black_cell_constraints_violated:
-        #     if int(self.config.settings['use_repair_function']):
-        #         # Repair the defective genotype
-        #         for _ in range(int(self.config.settings['repair_retry_count'])):
-        #             self.repair(genotype, genotype.bulb_shine_constraints_violated, genotype.black_cell_constraints_violated, invalid_black_coords)
-
-        #             if genotype.fitness != 0:
-        #                 break
-
-            # else:
-            #     # Use the original problem statement function
-            #     # Set the fitness to zero because some constraints are invalid
-            #     genotype.fitness = 0
-
 
     def place_bulb_randomly(self, bulbs):
         """Attempts to put a bulb randomly on the board in a valid location.

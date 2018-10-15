@@ -23,9 +23,6 @@ class MOEADriver:
         self.offspring_pool_size = int(self.config.settings['lambda'])
         
         self.run_count = 1
-        # self.best_fit_global_genotype = genotype_class.Genotype()
-        # self.best_fit_global_genotype.fitness =  -1 * int(self.config.settings['arbitrary_large_number'])
-
         self.init_run_variables()
 
         # Initialize the log file class
@@ -186,17 +183,17 @@ class MOEADriver:
             with open(self.config.settings['soln_file_path'], 'w') as soln_file:
                 for level_index, level in enumerate(self.best_fronts):
                     for genotype in level:
+                        # Write the genotype's subfitnesses to file
                         soln_file.write(str(genotype.shine_ratio) + '\t' + str(genotype.bulb_shine_constraints_violated) + '\t' + \
                             str(genotype.black_cell_constraints_violated) + '\t' + str(len(level)) + '\n')
                         
+                        # Write the genotype's bulb coordinates to file
                         for coord in sorted(genotype.bulbs):
                             soln_file.write(str(coord.y) + ' ' + str(coord.x) + '\n')
 
 
         for genotype in genotypes:
             self.phenotype.get_subfitnesses(genotype)
-
-            # TODO: Update soln file w/ new constraints
 
             # Calculate average subfitnesses
             self.total_bulb_shine_ratio_sum += genotype.shine_ratio
@@ -214,33 +211,6 @@ class MOEADriver:
             self.local_best_black_cell_constraints = min(genotype.black_cell_constraints_violated, self.local_best_black_cell_constraints)
             self.local_best_bulb_shine_constraints = min(genotype.bulb_shine_constraints_violated, self.local_best_bulb_shine_constraints)
 
-
-            # if genotype.fitness > self.best_fit_local_genotype.fitness:
-            #     self.best_fit_local_genotype = genotype
-
-            #     if self.best_fit_local_genotype.fitness > self.best_fit_global_genotype.fitness:
-            #         self.best_fit_global_genotype = self.best_fit_local_genotype
-
-            #         # Write to solution file
-            #         self.phenotype.write_to_soln_file(self.best_fit_global_genotype.bulbs)
-
-            #         # Visualize the solution
-            #         if int(self.config.settings['visualize_best_solution']):
-            #             self.phenotype.write_to_soln_visualization_file(self.best_fit_global_genotype.bulbs)
-
-            # Determine if the population fitness is stagnating
-            # if math.isclose(self.avg_fitness, self.prev_avg_fitness_termination, rel_tol=float(self.config.settings['termination_convergence_criterion_magnitude'])):
-            #     self.stale_fitness_count_termination += 1
-            # else:
-            #     self.stale_fitness_count_termination = 0
-            #     self.prev_avg_fitness_termination = self.avg_fitness
-            
-            # if math.isclose(self.avg_fitness, self.prev_avg_fitness_mutation, rel_tol=float(self.config.settings['mutation_factor_criterion_magnitude'])):
-            #     self.stale_fitness_count_mutation += 1
-            # else:
-            #     self.stale_fitness_count_mutation = 0
-            #     self.prev_avg_fitness_mutation = self.avg_fitness
-            
             self.eval_count += 1
 
         # Calculate the Pareto front and update fitnesses
@@ -368,7 +338,7 @@ class MOEADriver:
 
             If this cannot be done in a valid way, the child's bulb is removed.
             """
-            if random.random() < mutation_probability:
+            if random.random() < float(self.config.settings['mutation_probability']):
                 for _ in range(int(self.config.settings['num_bulb_removals_mutation'])):
                     try:
                         child.bulbs.pop()
@@ -384,15 +354,8 @@ class MOEADriver:
                     fail_count += 1
 
 
-        mutation_probability = float(self.config.settings['mutation_probability'])
-
-        # Determine if the stagnant population fitness requires more mutation
-        # if self.stale_fitness_count_mutation >= int(self.config.settings['mutation_factor_criterion']):
-        #     # There has been no change in average fitness for too long
-        #     mutation_probability *= float(self.config.settings['mutation_scale_factor'])
-
         for child in self.children:
-            if random.random() < mutation_probability:
+            if random.random() < float(self.config.settings['mutation_probability']):
                 for i in range(random.randint(1, int(self.config.settings['rand_num_bulb_shuffles']))):
                     shuffle_bulb(child)
 
