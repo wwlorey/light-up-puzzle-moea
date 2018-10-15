@@ -373,21 +373,22 @@ class MOEADriver:
 
 
     def decide_termination(self):
-        """Returns True if the program will terminate, False otherwise.
+        """Returns False if the program will terminate, True otherwise.
 
-        The program will terminate if any of the following conditions are True:
+        The program shall terminate if any of the following conditions are True:
             1. There has been no change in fitness (average fitness) for n evaluations.
             2. The number of evaluations specified in config has been reached.
         """
+        # TODO: Update termination criteria
         # if self.stale_fitness_count_termination >= int(self.config.settings['n_termination_convergence_criterion']):
         #     # There has been no change in average fitness for too long
         #     return True
 
         if self.eval_count >= int(self.config.settings['num_fitness_evaluations']):
             # The number of desired evaluations has been reached
-            return True
+            return False
 
-        return False
+        return True
 
 
     def sort_genotypes(self, genotype_list):

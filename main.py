@@ -26,7 +26,7 @@ if __name__ == '__main__':
         ea_driver.log.write_run_header(ea_driver.run_count)
         ea_driver.evaluate(ea_driver.population)
 
-        while True:
+        while ea_driver.decide_termination():
             ea_driver.select_parents()
 
             ea_driver.recombine()
@@ -37,8 +37,5 @@ if __name__ == '__main__':
 
             ea_driver.select_for_survival()
 
-            if ea_driver.decide_termination():
-                break
-            
         ea_driver.init_run_variables()
         ea_driver.increment_run_count()
