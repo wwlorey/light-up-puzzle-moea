@@ -176,8 +176,8 @@ class MOEADriver:
             self.eval_count += 1
 
         if log_run:
-            self.log.write_run_data(self.eval_count, self.avg_bulb_shine_ratio, self.local_best_shine_ratio, self.avg_black_cell_constraints_violated, 
-                self.local_best_black_cell_constraints, self.avg_black_cell_constraints_violated, self.local_best_black_cell_constraints)
+            self.log.write_run_data(self.eval_count, self.avg_bulb_shine_ratio, self.local_best_shine_ratio, self.avg_bulb_shine_constraints_violated, 
+                self.local_best_bulb_shine_constraints, self.avg_black_cell_constraints_violated, self.local_best_black_cell_constraints)
 
 
     def select_parents(self):
