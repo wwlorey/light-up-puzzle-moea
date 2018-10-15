@@ -378,23 +378,6 @@ class LightUpPuzzle:
         return False
 
 
-    def write_to_soln_file(self, bulbs):
-        """Writes problem information to the solution file specified in the configuration file."""
-        with open(self.config.settings["soln_file_path"], 'w') as soln_file:
-            soln_file.write(str(self.num_cols) + '\n')
-            soln_file.write(str(self.num_rows) + '\n')
-
-            for coord in sorted(self.black_squares):
-                soln_file.write(str(coord.y) + ' ' + str(coord.x) + ' ' + str(self.black_squares[coord]) + '\n')
-
-            soln_file.write(str(len(self.shined_squares)) + '\n')
-
-            for coord in sorted(bulbs):
-                soln_file.write(str(coord.y) + ' ' + str(coord.x) + '\n')
-
-            soln_file.write('\n')
-
-    
     def write_to_soln_visualization_file(self, bulbs):
         """Writes solution visualization to file with root name specified in the configuration file."""
         soln_vis_path = self.config.settings["soln_file_path"][:self.config.settings["soln_file_path"].find('.')] + '_visualization.txt'

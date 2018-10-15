@@ -182,7 +182,15 @@ class MOEADriver:
 
 
         def write_to_soln_file():
-            pass
+            """Writes the best Pareto front stored in self.best_fronts to the solution file."""
+            with open(self.config.settings['soln_file_path'], 'w') as soln_file:
+                for level_index, level in enumerate(self.best_fronts):
+                    for genotype in level:
+                        soln_file.write(str(genotype.shine_ratio) + '\t' + str(genotype.bulb_shine_constraints_violated) + '\t' + \
+                            str(genotype.black_cell_constraints_violated) + '\t' + str(len(level)) + '\n')
+                        
+                        for coord in sorted(genotype.bulbs):
+                            soln_file.write(str(coord.y) + ' ' + str(coord.x) + '\n')
 
 
         for genotype in genotypes:
@@ -242,7 +250,6 @@ class MOEADriver:
         # Determine new global best Pareto front
         if better_fronts(self.fronts, self.best_fronts):
             self.best_fronts = self.fronts
-            input('')
             write_to_soln_file()
 
         if log_run:
