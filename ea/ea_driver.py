@@ -23,8 +23,8 @@ class MOEADriver:
         self.offspring_pool_size = int(self.config.settings['lambda'])
         
         self.run_count = 1
-        self.best_fit_global_genotype = genotype_class.Genotype()
-        self.best_fit_global_genotype.fitness =  -1 * int(self.config.settings['arbitrary_large_number'])
+        # self.best_fit_global_genotype = genotype_class.Genotype()
+        # self.best_fit_global_genotype.fitness =  -1 * int(self.config.settings['arbitrary_large_number'])
 
         self.init_run_variables()
 
@@ -76,17 +76,21 @@ class MOEADriver:
                     else:
                         break
 
+        self.total_bulb_shine_ratio_sum = 0.0
+        self.total_black_cell_constraints_violated = 0
+        self.total_bulb_shine_constraints_violated = 0
+
+        self.total_genotypes_seen = 0
+
+        self.avg_bulb_shine_ratio = 0.0
+        self.avg_black_cell_constraints_violated = 0.0
+        self.avg_bulb_shine_constraints_violated = 0.0
+
+        self.local_best_shine_ratio = 0.0
+        self.local_best_bulb_shine_constraints = 0
+        self.local_best_black_cell_constraints = 0
 
         self.eval_count = 0
-        self.avg_fitness = 0.0
-        self.total_fitnesses_seen = 0
-        self.total_fitness_sum = 0
-        self.stale_fitness_count_termination = 0
-        self.stale_fitness_count_mutation = 0
-        self.prev_avg_fitness_termination = 0.0
-        self.prev_avg_fitness_mutation = 0.0
-        self.best_fit_local_genotype = genotype_class.Genotype()
-        self.best_fit_local_genotype.fitness = -1 * int(self.config.settings['arbitrary_large_number'])
 
         # Create/reset the base puzzle class (phenotype)
         self.phenotype = puzzle_class.LightUpPuzzle(self.config)
@@ -115,46 +119,57 @@ class MOEADriver:
         for genotype in genotypes:
             self.phenotype.get_fitness(genotype)
             self.determine_domination()
+            # self.set_fitnesses_to_level_number()
 
             # TODO: Update log file & soln file w/ new constraints
 
-            # Calculate average fitness
-            self.total_fitness_sum += genotype.fitness
-            self.total_fitnesses_seen += 1
-            self.avg_fitness = self.total_fitness_sum / self.total_fitnesses_seen
+            # Calculate average sibfitnesses
+            self.total_bulb_shine_ratio_sum += genotype.shine_ratio
+            self.total_black_cell_constraints_violated += genotype.black_cell_constraints_violated
+            self.total_bulb_shine_constraints_violated += genotype.bulb_shine_constraints_violated
 
-            # Determine if this fitness is the new best fitness (both locally and globally)
-            if genotype.fitness > self.best_fit_local_genotype.fitness:
-                self.best_fit_local_genotype = genotype
+            self.total_genotypes_seen += 1
 
-                if self.best_fit_local_genotype.fitness > self.best_fit_global_genotype.fitness:
-                    self.best_fit_global_genotype = self.best_fit_local_genotype
+            self.avg_bulb_shine_ratio = genotype.shine_ratio / self.total_genotypes_seen
+            self.avg_black_cell_constraints_violated = genotype.black_cell_constraints_violated / self.total_genotypes_seen
+            self.avg_bulb_shine_constraints_violated = genotype.bulb_shine_constraints_violated / self.total_genotypes_seen
 
-                    # Write to solution file
-                    self.phenotype.write_to_soln_file(self.best_fit_global_genotype.bulbs)
+            # Determine new local best subfitnesses
+            self.local_best_shine_ratio = max(genotype.shine_ratio, self.local_best_shine_ratio)
+            self.local_best_black_cell_constraints = min(genotype.black_cell_constraints_violated, self.local_best_black_cell_constraints)
+            self.local_best_bulb_shine_constraints = min(genotype.bulb_shine_constraints_violated, self.local_best_bulb_shine_constraints)
 
-                    # Visualize the solution
-                    if int(self.config.settings['visualize_best_solution']):
-                        self.phenotype.write_to_soln_visualization_file(self.best_fit_global_genotype.bulbs)
+            # if genotype.fitness > self.best_fit_local_genotype.fitness:
+            #     self.best_fit_local_genotype = genotype
 
-            
+            #     if self.best_fit_local_genotype.fitness > self.best_fit_global_genotype.fitness:
+            #         self.best_fit_global_genotype = self.best_fit_local_genotype
+
+            #         # Write to solution file
+            #         self.phenotype.write_to_soln_file(self.best_fit_global_genotype.bulbs)
+
+            #         # Visualize the solution
+            #         if int(self.config.settings['visualize_best_solution']):
+            #             self.phenotype.write_to_soln_visualization_file(self.best_fit_global_genotype.bulbs)
+
             # Determine if the population fitness is stagnating
-            if math.isclose(self.avg_fitness, self.prev_avg_fitness_termination, rel_tol=float(self.config.settings['termination_convergence_criterion_magnitude'])):
-                self.stale_fitness_count_termination += 1
-            else:
-                self.stale_fitness_count_termination = 0
-                self.prev_avg_fitness_termination = self.avg_fitness
+            # if math.isclose(self.avg_fitness, self.prev_avg_fitness_termination, rel_tol=float(self.config.settings['termination_convergence_criterion_magnitude'])):
+            #     self.stale_fitness_count_termination += 1
+            # else:
+            #     self.stale_fitness_count_termination = 0
+            #     self.prev_avg_fitness_termination = self.avg_fitness
             
-            if math.isclose(self.avg_fitness, self.prev_avg_fitness_mutation, rel_tol=float(self.config.settings['mutation_factor_criterion_magnitude'])):
-                self.stale_fitness_count_mutation += 1
-            else:
-                self.stale_fitness_count_mutation = 0
-                self.prev_avg_fitness_mutation = self.avg_fitness
+            # if math.isclose(self.avg_fitness, self.prev_avg_fitness_mutation, rel_tol=float(self.config.settings['mutation_factor_criterion_magnitude'])):
+            #     self.stale_fitness_count_mutation += 1
+            # else:
+            #     self.stale_fitness_count_mutation = 0
+            #     self.prev_avg_fitness_mutation = self.avg_fitness
             
             self.eval_count += 1
 
-        if log_run:
-            self.log.write_run_data(self.eval_count, self.avg_fitness, self.best_fit_local_genotype.fitness)
+        # TODO: update log file output
+        # if log_run:
+        #     self.log.write_run_data(self.eval_count, self.avg_fitness, self.best_fit_local_genotype.fitness)
 
 
     def select_parents(self):
@@ -287,9 +302,9 @@ class MOEADriver:
         mutation_probability = float(self.config.settings['mutation_probability'])
 
         # Determine if the stagnant population fitness requires more mutation
-        if self.stale_fitness_count_mutation >= int(self.config.settings['mutation_factor_criterion']):
-            # There has been no change in average fitness for too long
-            mutation_probability *= float(self.config.settings['mutation_scale_factor'])
+        # if self.stale_fitness_count_mutation >= int(self.config.settings['mutation_factor_criterion']):
+        #     # There has been no change in average fitness for too long
+        #     mutation_probability *= float(self.config.settings['mutation_scale_factor'])
 
         for child in self.children:
             if random.random() < mutation_probability:
@@ -356,9 +371,9 @@ class MOEADriver:
             1. There has been no change in fitness (average fitness) for n evaluations.
             2. The number of evaluations specified in config has been reached.
         """
-        if self.stale_fitness_count_termination >= int(self.config.settings['n_termination_convergence_criterion']):
-            # There has been no change in average fitness for too long
-            return True
+        # if self.stale_fitness_count_termination >= int(self.config.settings['n_termination_convergence_criterion']):
+        #     # There has been no change in average fitness for too long
+        #     return True
 
         if self.eval_count >= int(self.config.settings['num_fitness_evaluations']):
             # The number of desired evaluations has been reached
