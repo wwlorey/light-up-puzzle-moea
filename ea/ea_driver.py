@@ -394,7 +394,7 @@ class MOEADriver:
         """Sorts the given genotype list from most fit to least fit by each
         element's fitness ratio.
         """
-        genotype_list.sort(key=lambda x : x.fitness, reverse=True)
+        genotype_list.sort(key=lambda x : x.fitness)
 
 
     def increment_run_count(self):
