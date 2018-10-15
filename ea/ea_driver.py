@@ -203,7 +203,7 @@ class MOEADriver:
 
         elif int(self.config.settings['use_fitness_proportional_parent_selection']):
             # Select parents for breeding using the fitness proportional "roulette wheel" method (with replacement)
-            self.parents = random.choices(self.population, weights=[float(self.config.settings['fitness_proportional_parent_offset']) + (1 / abs(g.fitness) / float(self.config.settings['fitness_proportional_parent_div'])) for g in self.population], k=parent_population_size)
+            self.parents = random.choices(self.population, weights=[1 / abs(g.fitness) for g in self.population], k=parent_population_size)
 
         else:
             # Perform a k-tournament selection with replacement
@@ -360,7 +360,7 @@ class MOEADriver:
 
         elif int(self.config.settings['use_fitness_proportional_survival_selection']):
             # Select offspring for survival using the fitness proportional "roulette wheel" method (with replacement)
-            self.population = random.choices(selection_pool, weights=[float(self.config.settings['fitness_proportional_survival_offset']) + (abs(g.fitness) / float(self.config.settings['fitness_proportional_survival_div'])) for g in selection_pool], k=self.population_size)
+            self.population = random.choices(selection_pool, weights=[1 / abs(g.fitness) for g in selection_pool], k=self.population_size)
         
         else:
             # Use k-tournament for survival selection without replacement
