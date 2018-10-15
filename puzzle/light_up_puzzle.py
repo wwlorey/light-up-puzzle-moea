@@ -323,21 +323,12 @@ class LightUpPuzzle:
         return invalid_black_cell_constraint_count, invalid_black_coords
 
 
-    def get_fitness(self, genotype):
-        """Updates the given genotype's fitness (number of lit cells / total number of white cells).
+    def get_subfitnesses(self, genotype):
+        """Updates the given genotype's subfitnesses (listed below).
         
-        For constraint satisfaction fitness function, the fitness is reduced by a factor (penalty_coefficient)
-        of the constraints violated seen below in (1) and (2).
-
-        For the fitness repair function, an invalid genotype is repaired to make it valid.
-
-        For the original problem statement fitness function, the fitness is zero if (1) or (2) are not true.
-        
-        A solution with "good" fitness satisfies these requirements:
-        1. No bulbs shine on eachother.
-        2. Every black square has the required adjacent bulbs. (can be disabled using config file setting)
-
-        Note: the type of fitness function used is specified in config.
+        1. Ratio of lit cells to total number of white cells
+        2. Number of bulbs that shine on eachother
+        3. Black cell adjacency constraints
         """
         # Get number of shined squares
         genotype.bulb_shine_constraints_violated = self.update_shined_squares(genotype)

@@ -32,6 +32,7 @@ class MOEADriver:
         self.log = log_class.Log(self.config, self.seed, self.phenotype, overwrite=True)
 
         self.fronts = []
+        self.best_fronts = []
 
 
     def init_run_variables(self):
@@ -122,12 +123,70 @@ class MOEADriver:
             for front_index, front in enumerate(self.fronts):
                 for genotype in front:
                     genotype.fitness = front_index + 1
+        
+
+        def better_fronts(fronts_a, fronts_b):
+            """Returns True if fronts_a is better than fronts_b, False otherwise.
+            
+            A better front is defined by the following:
+
+            "Pareto front P1 as better than Pareto front P2 if the proportion of solutions in P1 which dominate at least one
+            solution in P2 is larger than the proportion of solutions in P2 which dominate at least one solution in P1" - Dr. T
+            """
+            if not fronts_a and not fronts_b:
+                pass
+
+            if not fronts_b:
+                return True
+
+            if not fronts_a:
+                return False
+
+            # Count of solutions from fronts_a that dominate a solution in fronts_b
+            a_domination_count = 0
+
+            # Count of solutions from fronts_b that dominate a solution in fronts_a
+            b_domination_count = 0
+
+            for front in fronts_a:
+                for genotype in front:
+                    for compare_front in fronts_b:
+                        count_incremented = False
+
+                        for compare_genotype in compare_front:
+                            if self.better(genotype, compare_genotype):
+                                # This solution in fronts_a is better than at least one solution in fronts_b
+                                count_incremented = True
+                                a_domination_count += 1
+                                break
+
+                        if count_incremented:
+                            break
+
+            for front in fronts_b:
+                for genotype in front:
+                    for compare_front in fronts_a:
+                        count_incremented = False
+
+                        for compare_genotype in compare_front:
+                            if self.better(genotype, compare_genotype):
+                                # This solution in fronts_b is better than at least one solution in fronts_a
+                                count_incremented = True
+                                b_domination_count += 1
+                                break
+
+                        if count_incremented:
+                            break
+            
+            return a_domination_count > b_domination_count
+
+
+        def write_to_soln_file():
+            pass
 
 
         for genotype in genotypes:
-            self.phenotype.get_fitness(genotype)
-            self.determine_domination()
-            set_fitnesses_to_level_number()
+            self.phenotype.get_subfitnesses(genotype)
 
             # TODO: Update soln file w/ new constraints
 
@@ -146,6 +205,7 @@ class MOEADriver:
             self.local_best_shine_ratio = max(genotype.shine_ratio, self.local_best_shine_ratio)
             self.local_best_black_cell_constraints = min(genotype.black_cell_constraints_violated, self.local_best_black_cell_constraints)
             self.local_best_bulb_shine_constraints = min(genotype.bulb_shine_constraints_violated, self.local_best_bulb_shine_constraints)
+
 
             # if genotype.fitness > self.best_fit_local_genotype.fitness:
             #     self.best_fit_local_genotype = genotype
@@ -174,6 +234,16 @@ class MOEADriver:
             #     self.prev_avg_fitness_mutation = self.avg_fitness
             
             self.eval_count += 1
+
+        # Calculate the Pareto front and update fitnesses
+        self.fronts = self.determine_domination()
+        set_fitnesses_to_level_number()
+
+        # Determine new global best Pareto front
+        if better_fronts(self.fronts, self.best_fronts):
+            self.best_fronts = self.fronts
+            input('')
+            write_to_soln_file()
 
         if log_run:
             self.log.write_run_data(self.eval_count, self.avg_bulb_shine_ratio, self.local_best_shine_ratio, self.avg_bulb_shine_constraints_violated, 
@@ -428,20 +498,21 @@ class MOEADriver:
         return max(arena_genotypes, key=lambda x : x.fitness)
 
 
+    def better(self, genotype_a, genotype_b):
+        """Returns True if genotype_a dominates genotype_b, False otherwise."""
+        return genotype_a.fitness >= genotype_b.fitness \
+            and genotype_a.black_cell_constraints_violated <= genotype_b.black_cell_constraints_violated \
+            and genotype_a.bulb_shine_constraints_violated <= genotype_b.bulb_shine_constraints_violated \
+            and (genotype_a.fitness > genotype_b.fitness \
+            or genotype_a.black_cell_constraints_violated < genotype_b.black_cell_constraints_violated \
+            or genotype_a.bulb_shine_constraints_violated < genotype_b.bulb_shine_constraints_violated)
+
+
     def determine_domination(self):
         """Generates a transient domination table and uses it to produce and return
-        front classifications in the form of TODO SOME DATA STRUCTURE.
+        front classifications in the form of a two dimensional list with each index corresponding
+        to (level - 1).
         """
-
-        def better(genotype_a, genotype_b):
-            """Returns True if genotype_a dominates genotype_b, False otherwise."""
-            return genotype_a.fitness >= genotype_b.fitness \
-                and genotype_a.black_cell_constraints_violated <= genotype_b.black_cell_constraints_violated \
-                and genotype_a.bulb_shine_constraints_violated <= genotype_b.bulb_shine_constraints_violated \
-                and (genotype_a.fitness > genotype_b.fitness \
-                or genotype_a.black_cell_constraints_violated < genotype_b.black_cell_constraints_violated \
-                or genotype_a.bulb_shine_constraints_violated < genotype_b.bulb_shine_constraints_violated)
-        
 
         def adjust_fronts(fronts, front_index, new_genotype):
             """Recursively percolates genotypes down in fronts starting at level front_index if genotypes 
@@ -461,7 +532,7 @@ class MOEADriver:
 
                 # Compare added genotype to the genotypes in this front (not comparing new_genotype to itself)
                 for genotype_to_compare in tmp_fronts:
-                    if better(new_genotype, genotype_to_compare):
+                    if self.better(new_genotype, genotype_to_compare):
                         # genotype_to_compare doesn't belong in this level, adjust it
                         try:
                             fronts[front_index].remove(genotype_to_compare)
@@ -478,21 +549,21 @@ class MOEADriver:
             dominating_genotype.dominates = []
 
             for dominated_genotype in self.population:
-                if better(dominating_genotype, dominated_genotype):
+                if self.better(dominating_genotype, dominated_genotype):
                     dominating_genotype.dominates.append(dominating_genotype)
         
         # Create the Pareto fronts (levels of domination)
-        self.fronts = []
+        fronts = []
 
         for genotype_to_add in self.population:
-            if self.fronts:
+            if fronts:
                 # Determine the next element placement
-                for index, level in enumerate(self.fronts):
+                for index, level in enumerate(fronts):
                     index_to_place = -1
                     genotype_to_add_is_dominated = False
 
                     for genotype in level:
-                        if better(genotype, genotype_to_add):
+                        if self.better(genotype, genotype_to_add):
                             genotype_to_add_is_dominated = True
                             break
                     
@@ -503,14 +574,14 @@ class MOEADriver:
                 
                 if index_to_place < 0:
                     # Add the genotype to a new front
-                    adjust_fronts(self.fronts, len(self.fronts), genotype_to_add)
+                    adjust_fronts(fronts, len(fronts), genotype_to_add)
 
                 else:
                     # Adjust elements in the updated front
-                    adjust_fronts(self.fronts, index_to_place, genotype_to_add)
+                    adjust_fronts(fronts, index_to_place, genotype_to_add)
 
             else:
                 # Add the 0th element
-                self.fronts.append([genotype_to_add])
+                fronts.append([genotype_to_add])
 
-        return self.fronts
+        return fronts
