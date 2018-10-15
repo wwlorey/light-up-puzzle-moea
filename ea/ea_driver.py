@@ -31,6 +31,8 @@ class MOEADriver:
         # Initialize the log file class
         self.log = log_class.Log(self.config, self.seed, self.phenotype, overwrite=True)
 
+        self.fronts = []
+
 
     def init_run_variables(self):
         """Initializes run specific variables.
@@ -415,6 +417,34 @@ class MOEADriver:
                 and (genotype_a.fitness > genotype_b.fitness \
                 or genotype_a.black_cell_constraints_violated < genotype_b.black_cell_constraints_violated \
                 or genotype_a.bulb_shine_constraints_violated < genotype_b.bulb_shine_constraints_violated)
+        
+
+        def adjust_fronts(fronts, front_index, new_genotype):
+            """Recursively percolates genotypes down in fronts starting at level front_index if genotypes 
+            in that level are dominated by new_genotype.
+
+            Modifies fronts in place.
+            """
+            if front_index >= len(fronts):
+                # Add new_genotype to a new level in fronts
+                fronts.append([new_genotype])
+            
+            else:
+                # Add new_genotype to this front
+                fronts[front_index].append(new_genotype)
+
+                tmp_fronts = fronts[front_index][:-1]
+
+                # Compare added genotype to the genotypes in this front (not comparing new_genotype to itself)
+                for genotype_to_compare in tmp_fronts:
+                    if better(new_genotype, genotype_to_compare):
+                        # genotype_to_compare doesn't belong in this level, adjust it
+                        try:
+                            fronts[front_index].remove(genotype_to_compare)
+                        except:
+                            pass
+
+                        adjust_fronts(fronts, front_index + 1, genotype_to_compare)
 
 
         # Create the domination table
@@ -428,13 +458,36 @@ class MOEADriver:
                     dominating_genotype.dominates.append(dominating_genotype)
         
         # Create the Pareto fronts (levels of domination)
-        fronts = []
+        self.fronts = []
 
         for genotype_to_add in self.population:
-            if fronts:
+            print(self.fronts)
+            if self.fronts:
                 # Determine the next element placement
-                pass
+                for index, level in enumerate(self.fronts):
+                    index_to_place = -1
+                    genotype_to_add_is_dominated = False
+
+                    for genotype in level:
+                        if better(genotype, genotype_to_add):
+                            genotype_to_add_is_dominated = True
+                            break
+                    
+                    if not genotype_to_add_is_dominated:
+                        # Add the genotype to this level and break out
+                        index_to_place = index
+                        break
+                
+                if index_to_place < 0:
+                    # Add the genotype to a new front
+                    adjust_fronts(self.fronts, len(self.fronts), genotype_to_add)
+
+                else:
+                    # Adjust elements in the updated front
+                    adjust_fronts(self.fronts, index_to_place, genotype_to_add)
 
             else:
                 # Add the 0th element
-                fronts.append([genotype_to_add])
+                self.fronts.append([genotype_to_add])
+
+        return self.fronts
