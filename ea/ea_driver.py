@@ -87,8 +87,8 @@ class MOEADriver:
         self.avg_bulb_shine_constraints_violated = 0.0
 
         self.local_best_shine_ratio = 0.0
-        self.local_best_bulb_shine_constraints = 0
-        self.local_best_black_cell_constraints = 0
+        self.local_best_bulb_shine_constraints = int(self.config.settings['arbitrary_large_number'])
+        self.local_best_black_cell_constraints = int(self.config.settings['arbitrary_large_number'])
 
         self.eval_count = 0
 
@@ -98,7 +98,7 @@ class MOEADriver:
         # Create/reset the puzzle population: a list genotypes
         self.population = []
         for _ in range(self.population_size):
-            self.population.append(genotype_class.Genotype())
+            self.population.append(genotype_class.Genotype(self.config))
 
         self.parents = []
         self.children = []
@@ -116,14 +116,22 @@ class MOEADriver:
 
         If log_run is True, the state of the experiment is written to the log file.
         """ 
+
+        def set_fitnesses_to_level_number():
+            """Updates each genotype's fitness to be its level in the Pareto fronts."""
+            for front_index, front in enumerate(self.fronts):
+                for genotype in front:
+                    genotype.fitness = front_index + 1
+
+
         for genotype in genotypes:
             self.phenotype.get_fitness(genotype)
             self.determine_domination()
-            # self.set_fitnesses_to_level_number()
+            set_fitnesses_to_level_number()
 
-            # TODO: Update log file & soln file w/ new constraints
+            # TODO: Update soln file w/ new constraints
 
-            # Calculate average sibfitnesses
+            # Calculate average subfitnesses
             self.total_bulb_shine_ratio_sum += genotype.shine_ratio
             self.total_black_cell_constraints_violated += genotype.black_cell_constraints_violated
             self.total_bulb_shine_constraints_violated += genotype.bulb_shine_constraints_violated
@@ -167,9 +175,9 @@ class MOEADriver:
             
             self.eval_count += 1
 
-        # TODO: update log file output
-        # if log_run:
-        #     self.log.write_run_data(self.eval_count, self.avg_fitness, self.best_fit_local_genotype.fitness)
+        if log_run:
+            self.log.write_run_data(self.eval_count, self.avg_bulb_shine_ratio, self.local_best_shine_ratio, self.avg_black_cell_constraints_violated, 
+                self.local_best_black_cell_constraints, self.avg_black_cell_constraints_violated, self.local_best_black_cell_constraints)
 
 
     def select_parents(self):
@@ -195,7 +203,7 @@ class MOEADriver:
 
         elif int(self.config.settings['use_fitness_proportional_parent_selection']):
             # Select parents for breeding using the fitness proportional "roulette wheel" method (with replacement)
-            self.parents = random.choices(self.population, weights=[float(self.config.settings['fitness_proportional_parent_offset']) + (abs(g.fitness) / float(self.config.settings['fitness_proportional_parent_div'])) for g in self.population], k=parent_population_size)
+            self.parents = random.choices(self.population, weights=[float(self.config.settings['fitness_proportional_parent_offset']) + (1 / abs(g.fitness) / float(self.config.settings['fitness_proportional_parent_div'])) for g in self.population], k=parent_population_size)
 
         else:
             # Perform a k-tournament selection with replacement
@@ -230,9 +238,9 @@ class MOEADriver:
 
             if not max_crossover_index:
                 if len(parent_a.bulbs):
-                    return genotype_class.Genotype(parent_a.bulbs)
+                    return genotype_class.Genotype(self.config, parent_a.bulbs)
                 else:
-                    return genotype_class.Genotype(parent_b.bulbs)
+                    return genotype_class.Genotype(self.config, parent_b.bulbs)
 
             crossover_indices = []
             rand_start = min_crossover_index 
@@ -259,7 +267,7 @@ class MOEADriver:
                 
                 prev_crossover_index = crossover_index
             
-            return genotype_class.Genotype(child_bulbs)
+            return genotype_class.Genotype(self.config, child_bulbs)
 
 
         self.children = []
@@ -476,7 +484,6 @@ class MOEADriver:
         self.fronts = []
 
         for genotype_to_add in self.population:
-            print(self.fronts)
             if self.fronts:
                 # Determine the next element placement
                 for index, level in enumerate(self.fronts):

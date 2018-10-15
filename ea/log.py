@@ -76,8 +76,10 @@ class Log:
         print(run_header)
 
 
-    def write_run_data(self, eval_count, average_fitness, best_fitness):
+    def write_run_data(self, eval_count, avg_subfitness1, best_subfitness1, avg_subfitness2, best_subfitness2, avg_subfitness3, best_subfitness3):
         """Writes the given run data to file and to the screen."""
-        run_data = str(eval_count) + '\t' + str(average_fitness) + '\t' + str(best_fitness)
+        run_data = str(eval_count) + '\t' + str(avg_subfitness1) +  '\t' + str(best_subfitness1) + '\t' + str(avg_subfitness2) + \
+            '\t' + str(best_subfitness2) + '\t' + str(avg_subfitness3) + '\t' + str(best_subfitness3)
+
         self.write(run_data)
         print(run_data)

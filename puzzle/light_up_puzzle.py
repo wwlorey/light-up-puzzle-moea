@@ -346,26 +346,26 @@ class LightUpPuzzle:
         genotype.black_cell_constraints_violated, invalid_black_coords = self.update_black_square_conditions(genotype)
 
         # Calculate the genotype's fitness
-        genotype.fitness = len(self.shined_squares) / self.num_possible_lit_cells 
+        genotype.shine_ratio = len(self.shined_squares) / self.num_possible_lit_cells 
 
-        if int(self.config.settings['use_penalty_function']):
-            # Use the constraint satisfaction fitness function
-            # Penalize the fitness for any validation infringements
-            genotype.fitness -= float(self.config.settings['penalty_coefficient']) * (genotype.bulb_shine_constraints_violated + genotype.black_cell_constraints_violated) / self.num_possible_lit_cells
+        # if int(self.config.settings['use_penalty_function']):
+        #     # Use the constraint satisfaction fitness function
+        #     # Penalize the fitness for any validation infringements
+        #     genotype.fitness -= float(self.config.settings['penalty_coefficient']) * (genotype.bulb_shine_constraints_violated + genotype.black_cell_constraints_violated) / self.num_possible_lit_cells
         
-        elif genotype.bulb_shine_constraints_violated or genotype.black_cell_constraints_violated:
-            if int(self.config.settings['use_repair_function']):
-                # Repair the defective genotype
-                for _ in range(int(self.config.settings['repair_retry_count'])):
-                    self.repair(genotype, genotype.bulb_shine_constraints_violated, genotype.black_cell_constraints_violated, invalid_black_coords)
+        # elif genotype.bulb_shine_constraints_violated or genotype.black_cell_constraints_violated:
+        #     if int(self.config.settings['use_repair_function']):
+        #         # Repair the defective genotype
+        #         for _ in range(int(self.config.settings['repair_retry_count'])):
+        #             self.repair(genotype, genotype.bulb_shine_constraints_violated, genotype.black_cell_constraints_violated, invalid_black_coords)
 
-                    if genotype.fitness != 0:
-                        break
+        #             if genotype.fitness != 0:
+        #                 break
 
-            else:
-                # Use the original problem statement function
-                # Set the fitness to zero because some constraints are invalid
-                genotype.fitness = 0
+            # else:
+            #     # Use the original problem statement function
+            #     # Set the fitness to zero because some constraints are invalid
+            #     genotype.fitness = 0
 
 
     def place_bulb_randomly(self, bulbs):
