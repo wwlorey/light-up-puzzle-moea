@@ -30,6 +30,9 @@ class MOEADriver:
 
         self.fronts = []
         self.best_fronts = []
+        self.prev_fronts = []
+
+        self.front_stagnation_count = 0
 
 
     def init_run_variables(self):
@@ -214,6 +217,7 @@ class MOEADriver:
             self.eval_count += 1
 
         # Calculate the Pareto front and update fitnesses
+        self.prev_fronts = self.fronts
         self.fronts = self.determine_domination()
         set_fitnesses_to_level_number()
 
@@ -419,10 +423,23 @@ class MOEADriver:
             1. There has been no change in fitness (average fitness) for n evaluations.
             2. The number of evaluations specified in config has been reached.
         """
-        # TODO: Update termination criteria
-        # if self.stale_fitness_count_termination >= int(self.config.settings['n_termination_convergence_criterion']):
-        #     # There has been no change in average fitness for too long
-        #     return True
+
+        def determine_top_level_stagnation():
+            """Determines if the top level of non-domination has been stagnating for 
+            n_termination_convergence_criterion evaluations.
+            """
+            if self.fronts and self.prev_fronts and self.fronts[0] == self.prev_fronts[0]:
+                self.front_stagnation_count += int(self.config.settings['lambda'])
+            
+            else:
+                self.front_stagnation_count = 0
+            
+            return self.front_stagnation_count >= int(self.config.settings['n_termination_convergence_criterion'])
+
+
+        if determine_top_level_stagnation():
+            # There has been no change in the top level of non-domination for too long
+            return False
 
         if self.eval_count >= int(self.config.settings['num_fitness_evaluations']):
             # The number of desired evaluations has been reached
