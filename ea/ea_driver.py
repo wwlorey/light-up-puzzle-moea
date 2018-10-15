@@ -482,7 +482,7 @@ class MOEADriver:
                 forbidden_indices.add(rand_index)
 
         # Make the genotypes fight, return the winner
-        return max(arena_genotypes, key=lambda x : x.fitness)
+        return min(arena_genotypes, key=lambda x : x.fitness)
 
 
     def better(self, genotype_a, genotype_b):
