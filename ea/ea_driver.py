@@ -135,6 +135,8 @@ class MOEADriver:
 
             "Pareto front P1 as better than Pareto front P2 if the proportion of solutions in P1 which dominate at least one
             solution in P2 is larger than the proportion of solutions in P2 which dominate at least one solution in P1" - Dr. T
+
+            Note that the number of placed bulbs subfitness was implemented for BONUS 1 only.
             """
             if not fronts_a and not fronts_b:
                 pass

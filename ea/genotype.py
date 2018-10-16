@@ -13,5 +13,7 @@ class Genotype:
         self.shine_ratio = 0.0
         self.black_cell_constraints_violated = 0
         self.bulb_shine_constraints_violated = 0
+
+        # BONUS 1 ONLY
         self.num_bulbs = 0
     
