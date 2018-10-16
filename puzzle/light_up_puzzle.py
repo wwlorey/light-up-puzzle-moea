@@ -329,6 +329,7 @@ class LightUpPuzzle:
         1. Ratio of lit cells to total number of white cells
         2. Number of bulbs that shine on eachother
         3. Black cell adjacency constraints
+        4. Number of bulbs placed on the board
         """
         # Get number of shined squares
         genotype.bulb_shine_constraints_violated = self.update_shined_squares(genotype)
@@ -338,6 +339,9 @@ class LightUpPuzzle:
 
         # Calculate the genotype's fitness
         genotype.shine_ratio = len(self.shined_squares) / self.num_possible_lit_cells 
+
+        # Calculate the number of bulbs placed on the board
+        genotype.num_bulbs = len(genotype.bulbs)
 
 
     def place_bulb_randomly(self, bulbs):

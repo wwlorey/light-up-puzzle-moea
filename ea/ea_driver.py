@@ -80,16 +80,19 @@ class MOEADriver:
         self.total_bulb_shine_ratio_sum = 0.0
         self.total_black_cell_constraints_violated = 0
         self.total_bulb_shine_constraints_violated = 0
+        self.total_num_bulbs = 0
 
         self.total_genotypes_seen = 0
 
         self.avg_bulb_shine_ratio = 0.0
         self.avg_black_cell_constraints_violated = 0.0
         self.avg_bulb_shine_constraints_violated = 0.0
+        self.avg_num_bulbs = 0.0
 
         self.local_best_shine_ratio = 0.0
         self.local_best_bulb_shine_constraints = int(self.config.settings['arbitrary_large_number'])
         self.local_best_black_cell_constraints = int(self.config.settings['arbitrary_large_number'])
+        self.local_best_num_bulbs = int(self.config.settings['arbitrary_large_number'])
 
         self.eval_count = 0
 
@@ -202,17 +205,20 @@ class MOEADriver:
             self.total_bulb_shine_ratio_sum += genotype.shine_ratio
             self.total_black_cell_constraints_violated += genotype.black_cell_constraints_violated
             self.total_bulb_shine_constraints_violated += genotype.bulb_shine_constraints_violated
+            self.total_num_bulbs += genotype.num_bulbs
 
             self.total_genotypes_seen += 1
 
-            self.avg_bulb_shine_ratio = genotype.shine_ratio / self.total_genotypes_seen
-            self.avg_black_cell_constraints_violated = genotype.black_cell_constraints_violated / self.total_genotypes_seen
-            self.avg_bulb_shine_constraints_violated = genotype.bulb_shine_constraints_violated / self.total_genotypes_seen
+            self.avg_bulb_shine_ratio = self.total_bulb_shine_ratio_sum  / self.total_genotypes_seen
+            self.avg_black_cell_constraints_violated = self.total_black_cell_constraints_violated / self.total_genotypes_seen
+            self.avg_bulb_shine_constraints_violated = self.total_bulb_shine_constraints_violated / self.total_genotypes_seen
+            self.avg_num_bulbs = self.total_num_bulbs / self.total_genotypes_seen
 
             # Determine new local best subfitnesses
             self.local_best_shine_ratio = max(genotype.shine_ratio, self.local_best_shine_ratio)
             self.local_best_black_cell_constraints = min(genotype.black_cell_constraints_violated, self.local_best_black_cell_constraints)
             self.local_best_bulb_shine_constraints = min(genotype.bulb_shine_constraints_violated, self.local_best_bulb_shine_constraints)
+            self.local_best_num_bulbs = min(genotype.num_bulbs, self.local_best_num_bulbs)
 
             self.eval_count += 1
 
@@ -228,7 +234,8 @@ class MOEADriver:
 
         if log_run:
             self.log.write_run_data(self.eval_count, self.avg_bulb_shine_ratio, self.local_best_shine_ratio, self.avg_bulb_shine_constraints_violated, 
-                self.local_best_bulb_shine_constraints, self.avg_black_cell_constraints_violated, self.local_best_black_cell_constraints)
+                self.local_best_bulb_shine_constraints, self.avg_black_cell_constraints_violated, self.local_best_black_cell_constraints, 
+                self.avg_num_bulbs, self.local_best_num_bulbs)
 
 
     def select_parents(self):
@@ -490,9 +497,11 @@ class MOEADriver:
         return genotype_a.fitness >= genotype_b.fitness \
             and genotype_a.black_cell_constraints_violated <= genotype_b.black_cell_constraints_violated \
             and genotype_a.bulb_shine_constraints_violated <= genotype_b.bulb_shine_constraints_violated \
+            and genotype_a.num_bulbs <= genotype_b.num_bulbs \
             and (genotype_a.fitness > genotype_b.fitness \
             or genotype_a.black_cell_constraints_violated < genotype_b.black_cell_constraints_violated \
-            or genotype_a.bulb_shine_constraints_violated < genotype_b.bulb_shine_constraints_violated)
+            or genotype_a.bulb_shine_constraints_violated < genotype_b.bulb_shine_constraints_violated \
+            or genotype_a.num_bulbs < genotype_b.num_bulbs)
 
 
     def determine_domination(self):

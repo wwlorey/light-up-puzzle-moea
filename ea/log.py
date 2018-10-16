@@ -76,10 +76,13 @@ class Log:
         print(run_header)
 
 
-    def write_run_data(self, eval_count, avg_subfitness1, best_subfitness1, avg_subfitness2, best_subfitness2, avg_subfitness3, best_subfitness3):
+    def write_run_data(self, eval_count, avg_subfitness1, best_subfitness1, avg_subfitness2, best_subfitness2, avg_subfitness3, best_subfitness3, avg_subfitness4, best_subfitness4, include_fourth_subfitness=False):
         """Writes the given run data to file and to the screen."""
         run_data = str(eval_count) + '\t' + str(avg_subfitness1) +  '\t' + str(best_subfitness1) + '\t' + str(avg_subfitness2) + \
             '\t' + str(best_subfitness2) + '\t' + str(avg_subfitness3) + '\t' + str(best_subfitness3)
+        
+        if include_fourth_subfitness:
+            run_data += '\t' + str(avg_subfitness4) + '\t' + str(best_subfitness4)
 
         self.write(run_data)
         print(run_data)
