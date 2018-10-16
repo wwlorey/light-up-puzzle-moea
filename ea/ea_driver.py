@@ -495,7 +495,10 @@ class MOEADriver:
 
 
     def better(self, genotype_a, genotype_b):
-        """Returns True if genotype_a dominates genotype_b, False otherwise."""
+        """Returns True if genotype_a dominates genotype_b, False otherwise.
+        
+        For a proper definition of what "better" entails, refer to the function better_fronts().
+        """
         return genotype_a.fitness >= genotype_b.fitness \
             and genotype_a.black_cell_constraints_violated <= genotype_b.black_cell_constraints_violated \
             and genotype_a.bulb_shine_constraints_violated <= genotype_b.bulb_shine_constraints_violated \
