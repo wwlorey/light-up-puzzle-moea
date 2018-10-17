@@ -51,6 +51,32 @@ number of objectives on non-domination and MOEA performance (BONUS \#1).
 
 \section{MOEA Overview}
 
+The MOEA implemented in this assignment is based on the NSGA-II algorithm. It begins,
+similar to a standard evolutionary algorithm, by creating an initial population using
+either uniform random or validity enforced plus uniform random initialization, the 
+settings for which are specified in the algorithm configuration file. That population
+is evaluated and the subfitnesses are determined and assigned to each individual 
+in the population.
+
+The population is then evaluated on the basis of non-domination. A list of Pareto fronts is created
+from the initial population where all genotypes in a given front are not dominated
+by any other genotypes in that front while genotypes in higher level fronts are dominated
+by genotypes in lower level fronts. The 'best' genotypes, those in the best level
+of non-domination, are assigned to level number one. Subsequent levels increase in
+increments of one for other levels of non-domination.
+
+The fitness of each genotype is then set to its level in the list of Pareto fronts, with
+individuals exhibiting a smaller fitness (level number) are more fit. A binary tournament selection 
+is performed to choose breeding parents. Then offspring are created using an n-point crossover
+recombination (with n determined in the configuration file). Following that, mutation is performed,
+completing the child population.
+
+For the standard NSGA-II configuration (exhibited in the deliverables configuration folder),
+the plus survival strategy is exhibited, combining the children and parent populations into 
+one large population from which to choose the new population. Individuals are then selected for 
+survival using a binary tournament selection and the process is repeated using the new population
+until the end of the experiment.
+
 
 \section{Impact of Initialization on MOEA Performance}
 
