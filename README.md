@@ -14,7 +14,7 @@ To compile and run the code, simply run the following script. This defaults to u
 
 Or, include the optional configuration file parameter.
 
-	./run.sh config/deliverables/website_puzzle_validity_enforced.cfg
+	./run.sh config/deliverables/website_puzzle.cfg
 
 #################################
 #	Coding Standards	#
