@@ -11,7 +11,7 @@
 
 \newcommand{\addgraphic}[1]{\centerline{\includegraphics[scale=0.6]{report/figures/{#1}.png}}}
 
-\newcommand{\tablecaption}[1]{\caption{Statistical Analysis performed on the {#1}, EA configurations}}
+\newcommand{\tablecaption}[1]{\caption{Statistical Analysis performed on the {#1}}}
 
 \title{CS5401 FS2018 Assignment 1d}
 \author{William  Lorey \\ wwlytc@mst.edu}
@@ -95,7 +95,7 @@ TODO: need to create config files and run test for this
 % \end{figure}
 
 \begin{table}[] 
-\tablecaption{TODO caption}        
+\tablecaption{Uniform Random and Validity Enforced Uniform Random Initialized, Randomly Generated Puzzle, EA configurations}        
 \label{TODO label}                 
 \resizebox{\textwidth}{!}{%        
 \begin{tabular}{|l|l|l|}           
@@ -115,13 +115,14 @@ TODO: need to create config files and run test for this
   t Stat & 0.23677202742177048 &  \\ \hline 
   P two-tail & 0.8131059379632284 &  \\ \hline 
   t Critical two-tail & 1.9864 &  \\ \hline 
-  Nether random\_gen\_uniform\_random\_init nor random\_gen is statistically better &  &   \\ \hline 
+  Nether random\_gen\_uniform\_random\_init & & \\
+  nor random\_gen is statistically better &  &   \\ \hline 
   \end{tabular}%     
 }                    
 \end{table}
 
 \begin{table}[] 
-\tablecaption{TODO caption}        
+\tablecaption{Uniform Random and Validity Enforced Uniform Random Initialized, Provided Puzzle, EA configurations}
 \label{TODO label}                 
 \resizebox{\textwidth}{!}{%        
 \begin{tabular}{|l|l|l|}           
@@ -141,13 +142,14 @@ TODO: need to create config files and run test for this
   t Stat & 0.05609263818405474 &  \\ \hline 
   P two-tail & 0.9553309228197409 &  \\ \hline 
   t Critical two-tail & 1.9864 &  \\ \hline 
-  Nether website\_puzzle\_uniform\_random\_init nor website\_puzzle is statistically better &  &   \\ \hline 
+  Nether website\_puzzle\_uniform\_random\_init & & \\
+  nor website\_puzzle is statistically better &  &   \\ \hline 
   \end{tabular}%     
 }                    
 \end{table}
 
 \begin{table}[] 
-\tablecaption{TODO caption}        
+\tablecaption{Fitness Proportional Parent \& Survival Selection Configuration vs Tournament Parent \& Survival Selection Configuration, Randomly Generated Puzzle, Plus Survival Strategy}
 \label{TODO label}                 
 \resizebox{\textwidth}{!}{%        
 \begin{tabular}{|l|l|l|}           
@@ -167,13 +169,15 @@ TODO: need to create config files and run test for this
   t Stat & -1.602785890738212 &  \\ \hline 
   P two-tail & 0.11075495921868657 &  \\ \hline 
   t Critical two-tail & 1.984 &  \\ \hline 
-  Nether random\_gen\_\_tournament\_parent\_\_tournament\_survival\_\_plus nor random\_gen\_\_fitness\_proportional\_parent\_\_fitness\_proportional\_survival\_\_plus is statistically better &  &   \\ \hline 
+  Nether random\_gen\_\_tournament\_parent\_\_tournament\_survival\_\_plus & & \\
+  nor random\_gen\_\_fitness\_proportional\_parent\_\_fitness\_proportional\_survival\_\_plus & & \\
+  is statistically better &  &   \\ \hline 
   \end{tabular}%     
 }                    
 \end{table}
 
 \begin{table}[] 
-\tablecaption{TODO caption}        
+\tablecaption{Fitness Proportional Parent \& Survival Selection Configuration vs Tournament Parent \& Survival Selection Configuration, Randomly Generated Puzzle, Comma Survival Strategy}
 \label{TODO label}                 
 \resizebox{\textwidth}{!}{%        
 \begin{tabular}{|l|l|l|}           
@@ -193,13 +197,15 @@ TODO: need to create config files and run test for this
   t Stat & -0.21742455014656503 &  \\ \hline 
   P two-tail & 0.8281265270658065 &  \\ \hline 
   t Critical two-tail & 1.984 &  \\ \hline 
-  Nether random\_gen\_\_tournament\_parent\_\_tournament\_survival\_\_comma nor random\_gen\_\_fitness\_proportional\_parent\_\_fitness\_proportional\_survival\_\_comma is statistically better &  &   \\ \hline 
+  Nether random\_gen\_\_tournament\_parent\_\_tournament\_survival\_\_comma & & \\
+  nor random\_gen\_\_fitness\_proportional\_parent\_\_fitness\_proportional\_survival\_\_comma & & \\
+  is statistically better &  &   \\ \hline 
   \end{tabular}%     
 }                    
 \end{table}
 
 \begin{table}[] 
-\tablecaption{TODO caption}        
+\tablecaption{Fitness Proportional Parent Selection \& Tournament Survival Selection Configuration vs Tournament Parent Selection \& Fitness Proportional Survival Selection Configuration, Randomly Generated Puzzle, Plus Survival Strategy}
 \label{TODO label}                 
 \resizebox{\textwidth}{!}{%        
 \begin{tabular}{|l|l|l|}           
@@ -219,13 +225,15 @@ TODO: need to create config files and run test for this
   t Stat & 2.275528242233756 &  \\ \hline 
   P two-tail & 0.02407306500131702 &  \\ \hline 
   t Critical two-tail & 1.9864 &  \\ \hline 
-  random\_gen\_\_fitness\_proportional\_parent\_\_tournament\_survival\_\_plus is statistically better than random\_gen\_\_tournament\_parent\_\_fitness\_proportional\_survival\_\_plus &  &   \\ \hline 
+  random\_gen\_\_fitness\_proportional\_parent\_\_tournament\_survival\_\_plus & & \\
+  is statistically better than & & \\
+  random\_gen\_\_tournament\_parent\_\_fitness\_proportional\_survival\_\_plus &  &   \\ \hline 
   \end{tabular}%     
 }                    
 \end{table}
 
 \begin{table}[] 
-\tablecaption{TODO caption}        
+\tablecaption{Fitness Proportional Parent Selection \& Tournament Survival Selection Configuration vs Tournament Parent Selection \& Fitness Proportional Survival Selection, Randomly Generated Puzzle, Comma Survival Strategy}       
 \label{TODO label}                 
 \resizebox{\textwidth}{!}{%        
 \begin{tabular}{|l|l|l|}           
@@ -245,13 +253,15 @@ TODO: need to create config files and run test for this
   t Stat & 0.5777943233491296 &  \\ \hline 
   P two-tail & 0.564133232652437 &  \\ \hline 
   t Critical two-tail & 1.9864 &  \\ \hline 
-  Nether random\_gen\_\_tournament\_parent\_\_fitness\_proportional\_survival\_\_comma nor random\_gen\_\_fitness\_proportional\_parent\_\_tournament\_survival\_\_comma is statistically better &  &   \\ \hline 
+  Nether random\_gen\_\_tournament\_parent\_\_fitness\_proportional\_survival\_\_comma  & &\\
+  nor random\_gen\_\_fitness\_proportional\_parent\_\_tournament\_survival\_\_comma & &\\
+  is statistically better &  &   \\ \hline 
   \end{tabular}%     
 }                    
 \end{table}
 
 \begin{table}[] 
-\tablecaption{TODO caption}        
+\tablecaption{Tournament Parent \& Survival Selection (Comma Survival Strategy) vs Tournament Parent \& Survival Selection (Plus Selection Strategy), Randomly Generated Puzzle}        
 \label{TODO label}                 
 \resizebox{\textwidth}{!}{%        
 \begin{tabular}{|l|l|l|}           
@@ -271,7 +281,9 @@ TODO: need to create config files and run test for this
   t Stat & -0.9761931904577807 &  \\ \hline 
   P two-tail & 0.33029355296868534 &  \\ \hline 
   t Critical two-tail & 1.984 &  \\ \hline 
-  Nether random\_gen\_\_tournament\_parent\_\_tournament\_survival\_\_plus nor random\_gen\_\_tournament\_parent\_\_tournament\_survival\_\_comma is statistically better &  &   \\ \hline 
+  Nether random\_gen\_\_tournament\_parent\_\_tournament\_survival\_\_plus & & \\
+  nor random\_gen\_\_tournament\_parent\_\_tournament\_survival\_\_comma & & \\
+  is statistically better &  &   \\ \hline 
   \end{tabular}%     
 }                    
 \end{table}
