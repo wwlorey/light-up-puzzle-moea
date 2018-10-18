@@ -24,9 +24,9 @@ for i in range(len(config.log_file_paths)):
             if line[0] == 'R':
                 curr_run_count = int(line.split()[1])
                 if not prev_run_count == curr_run_count:
-                    last_best_ratios.append(all_best_ratios[-1])
-                    last_best_bulb_constrs.append(all_best_bulb_constrs[-1])
-                    last_best_black_constrs.append(all_best_black_constrs[-1])
+                    last_best_ratios.append(float(all_best_ratios[-1]))
+                    last_best_bulb_constrs.append(float(all_best_bulb_constrs[-1]))
+                    last_best_black_constrs.append(float(all_best_black_constrs[-1]))
                     prev_run_count = curr_run_count
 
             else:
@@ -47,17 +47,16 @@ for i in range(len(config.log_file_paths)):
                 else:
                     all_best_black_constrs.append(1 / float(line[6]))
 
-        last_best_ratios.append(all_best_ratios[-1])
-        last_best_bulb_constrs.append(all_best_bulb_constrs[-1])
-        last_best_black_constrs.append(all_best_black_constrs[-1])
+        last_best_ratios.append(float(all_best_ratios[-1]))
+        last_best_bulb_constrs.append(float(all_best_bulb_constrs[-1]))
+        last_best_black_constrs.append(float(all_best_black_constrs[-1]))
         
-    # Write the last (local) best fitnesses to a file in three groups
+    # Write the last (local) best fitnesses to a file as averages of:
     # 1: best ratios
     # 2: best bulb constraints
     # 3: best black cell constraints
     with open(config.log_file_paths[i][:config.log_file_paths[i].find('log')] + 'last_best_local_fits.txt', 'w') as out:
-        for lst in [last_best_ratios, last_best_bulb_constrs, last_best_black_constrs]:
-            for fit in lst:
-                out.write(str(fit) + '\n')
-            
+        for k in range(len(last_best_ratios)):
+            fit = (last_best_ratios[k] + last_best_black_constrs[k] + last_best_bulb_constrs[k]) / 3.0
+            out.write(str(fit) + '\n')
 
