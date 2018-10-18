@@ -67,13 +67,19 @@ for q in range(len(config.log_file_paths)):
 
 
         # Configure graphing data
+        if 'web' in config.log_file_paths[q]:
+            black_cell_constr_y_lim = 40 
+        else:
+            black_cell_constr_y_lim = 10
+
         plot_data = \
             [
                 (avg_shine_ratios, best_shine_ratios, "Lit Cell Ratio", "lit_cell_ratio", 1), 
                 (avg_bulb_constrs, best_bulb_constrs, 
                     "Number of Bulb Shine Constraints Violated", "bulb_shine_constr", 2),
                 (avg_black_cell_constrs, best_black_cell_constrs, 
-                    "Number of Black Cell Constraints Violated", "black_cell_constr", 10)
+                    "Number of Black Cell Constraints Violated", "black_cell_constr", 
+                    black_cell_constr_y_lim)
             ]
 
         # Plot the results

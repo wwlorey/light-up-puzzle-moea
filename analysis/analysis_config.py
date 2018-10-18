@@ -7,7 +7,10 @@ log_file_paths = [
                     'random_gen/random_gen__tournament_parent__tournament_survival__comma_',
                     'random_gen/random_gen__fitness_proportional_parent__tournament_survival__plus_',
                     'random_gen/random_gen__tournament_parent__tournament_survival__plus_',
-                    'random_gen/random_gen_uniform_random_init'
+                    'random_gen/random_gen_uniform_random_init',
+
+                    'website_puzzle/website_puzzle',
+                    'website_puzzle/website_puzzle_uniform_random_init'
                  ]
 
 
