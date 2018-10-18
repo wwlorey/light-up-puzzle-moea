@@ -27,6 +27,28 @@ test_cases = \
         (
             '../output/website_puzzle/website_puzzle_last_best_local_fits.txt',
             '../output/website_puzzle/website_puzzle_uniform_random_init_last_best_local_fits.txt'
+        ),
+
+
+        (
+            '../output/random_gen/random_gen__fitness_proportional_parent__fitness_proportional_survival__plus__last_best_local_fits.txt',
+            '../output/random_gen/random_gen__tournament_parent__tournament_survival__plus__last_best_local_fits.txt',
+        ),
+        (
+            '../output/random_gen/random_gen__fitness_proportional_parent__fitness_proportional_survival__comma__last_best_local_fits.txt',
+            '../output/random_gen/random_gen__tournament_parent__tournament_survival__comma__last_best_local_fits.txt',
+        ),
+        (
+            '../output/random_gen/random_gen__fitness_proportional_parent__tournament_survival__plus__last_best_local_fits.txt',
+            '../output/random_gen/random_gen__tournament_parent__fitness_proportional_survival__plus__last_best_local_fits.txt',
+        ),
+        (
+            '../output/random_gen/random_gen__fitness_proportional_parent__tournament_survival__comma__last_best_local_fits.txt',
+            '../output/random_gen/random_gen__tournament_parent__fitness_proportional_survival__comma__last_best_local_fits.txt',
+        ),
+        (
+            '../output/random_gen/random_gen__tournament_parent__tournament_survival__comma__last_best_local_fits.txt',
+            '../output/random_gen/random_gen__tournament_parent__tournament_survival__plus__last_best_local_fits.txt',
         )
     ]
 

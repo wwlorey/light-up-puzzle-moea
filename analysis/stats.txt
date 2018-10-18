@@ -36,3 +36,98 @@ Nether website_puzzle_uniform_random_init nor website_puzzle is statistically be
 
 
 
+ ,random_gen__fitness_proportional_parent__fitness_proportional_survival__plus_, random_gen__tournament_parent__tournament_survival__plus_
+mean, 0.9712902683331007, 1.1621500278718002
+variance, 0.6831692544628184, 0.5788550823616683
+standard deviation, 0.8265405340712689, 0.7608252640137999
+observations, 90, 90
+df, 89, 89
+F, 1.180207750229227
+F critical, 0.7042808002041888
+Equal variances assumed
+
+observations, 90
+df, 100
+t Stat, -1.602785890738212
+P two-tail, 0.11075495921868657
+t Critical two-tail, 1.984
+Nether random_gen__tournament_parent__tournament_survival__plus_ nor random_gen__fitness_proportional_parent__fitness_proportional_survival__plus_ is statistically better
+
+
+
+ ,random_gen__fitness_proportional_parent__fitness_proportional_survival__comma_, random_gen__tournament_parent__tournament_survival__comma_
+mean, 1.0292821828716079, 1.0534509493717248
+variance, 0.5750797820091365, 0.5246394448913503
+standard deviation, 0.7583401492794223, 0.724319987913733
+observations, 90, 90
+df, 89, 89
+F, 1.0961428607950592
+F critical, 0.7042808002041888
+Equal variances assumed
+
+observations, 90
+df, 100
+t Stat, -0.21742455014656503
+P two-tail, 0.8281265270658065
+t Critical two-tail, 1.984
+Nether random_gen__tournament_parent__tournament_survival__comma_ nor random_gen__fitness_proportional_parent__fitness_proportional_survival__comma_ is statistically better
+
+
+
+ ,random_gen__fitness_proportional_parent__tournament_survival__plus_, random_gen__tournament_parent__fitness_proportional_survival__plus_
+mean, 1.1900153275106076, 0.9222749663618832
+variance, 0.56922309186753, 0.6628975581945191
+standard deviation, 0.7544687481052678, 0.814185211235453
+observations, 90, 90
+df, 89, 89
+F, 0.8586893779151596
+F critical, 0.7042808002041888
+Unequal variances assumed
+
+observations, 90
+df, 91
+t Stat, 2.275528242233756
+P two-tail, 0.02407306500131702
+t Critical two-tail, 1.9864
+random_gen__fitness_proportional_parent__tournament_survival__plus_ is statistically better than random_gen__tournament_parent__fitness_proportional_survival__plus_
+
+
+
+ ,random_gen__fitness_proportional_parent__tournament_survival__comma_, random_gen__tournament_parent__fitness_proportional_survival__comma_
+mean, 1.1186544987668479, 1.0557988630231474
+variance, 0.5311136965722282, 0.5221373804886605
+standard deviation, 0.7287754774772737, 0.7225907420446657
+observations, 90, 90
+df, 89, 89
+F, 1.0171914833509275
+F critical, 0.7042808002041888
+Unequal variances assumed
+
+observations, 90
+df, 91
+t Stat, 0.5777943233491296
+P two-tail, 0.564133232652437
+t Critical two-tail, 1.9864
+Nether random_gen__tournament_parent__fitness_proportional_survival__comma_ nor random_gen__fitness_proportional_parent__tournament_survival__comma_ is statistically better
+
+
+
+ ,random_gen__tournament_parent__tournament_survival__comma_, random_gen__tournament_parent__tournament_survival__plus_
+mean, 1.0534509493717248, 1.1621500278718002
+variance, 0.5246394448913503, 0.5788550823616683
+standard deviation, 0.724319987913733, 0.7608252640137999
+observations, 90, 90
+df, 89, 89
+F, 0.9063398782833109
+F critical, 0.7042808002041888
+Equal variances assumed
+
+observations, 90
+df, 100
+t Stat, -0.9761931904577807
+P two-tail, 0.33029355296868534
+t Critical two-tail, 1.984
+Nether random_gen__tournament_parent__tournament_survival__plus_ nor random_gen__tournament_parent__tournament_survival__comma_ is statistically better
+
+
+

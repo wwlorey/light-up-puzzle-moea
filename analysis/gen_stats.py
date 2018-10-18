@@ -102,6 +102,9 @@ def t_test(a, b, assumption):
 
     # Calculate the t critical two-tail value
     # Note: an alpha value of 0.05 is assumed
+    if df > len(config.t_table):
+        df = len(config.t_table) - 1
+
     t_crit = config.t_table[df]
 
     # Print information

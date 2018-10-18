@@ -45,13 +45,15 @@ with open('stats.txt', 'r') as f:
             for split in splits:
                 result += [item.strip() for item in split.split(',')]
 
-            while True:
-                if not result[0]:
-                    result = result[1:]
-                else:
-                    break
-
             result = [item for item in result if item]
+
+            for res_index in range(len(result)):
+                split_item = result[res_index].split()
+                for word_index in range(len(split_item)):
+                    if split_item[word_index][-1] == '_':
+                       split_item[word_index] = split_item[word_index][:-1]
+
+                result[res_index] = ' '.join(split_item)
 
             output_table = table_template
 

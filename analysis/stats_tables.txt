@@ -50,3 +50,133 @@
 }                    
 \end{table}
 
+\begin{table}[] 
+\tablecaption{TODO caption}        
+\label{TODO label}                 
+\resizebox{\textwidth}{!}{%        
+\begin{tabular}{|l|l|l|}           
+\hline               
+  & random\_gen\_\_fitness\_proportional\_parent\_\_fitness\_proportional\_survival\_\_plus & random\_gen\_\_tournament\_parent\_\_tournament\_survival\_\_plus  \\ \hline 
+ mean & 0.9712902683331007 & 1.1621500278718002 \\ \hline 
+ variance & 0.6831692544628184 & 0.5788550823616683 \\ \hline 
+ standard deviation & 0.8265405340712689 & 0.7608252640137999 \\ \hline 
+ observations & 90 & 90 \\ \hline 
+ df & 89 & 89 \\ \hline 
+ F & 1.180207750229227 &   \\ \hline 
+ F critical & 0.7042808002041888 &   \\ \hline 
+ Equal variances assumed &  &    \\ \hline 
+  &  &     \\ \hline 
+  observations & 90 &  \\ \hline 
+  df & 100 &  \\ \hline 
+  t Stat & -1.602785890738212 &  \\ \hline 
+  P two-tail & 0.11075495921868657 &  \\ \hline 
+  t Critical two-tail & 1.984 &  \\ \hline 
+  Nether random\_gen\_\_tournament\_parent\_\_tournament\_survival\_\_plus nor random\_gen\_\_fitness\_proportional\_parent\_\_fitness\_proportional\_survival\_\_plus is statistically better &  &   \\ \hline 
+  \end{tabular}%     
+}                    
+\end{table}
+
+\begin{table}[] 
+\tablecaption{TODO caption}        
+\label{TODO label}                 
+\resizebox{\textwidth}{!}{%        
+\begin{tabular}{|l|l|l|}           
+\hline               
+  & random\_gen\_\_fitness\_proportional\_parent\_\_fitness\_proportional\_survival\_\_comma & random\_gen\_\_tournament\_parent\_\_tournament\_survival\_\_comma  \\ \hline 
+ mean & 1.0292821828716079 & 1.0534509493717248 \\ \hline 
+ variance & 0.5750797820091365 & 0.5246394448913503 \\ \hline 
+ standard deviation & 0.7583401492794223 & 0.724319987913733 \\ \hline 
+ observations & 90 & 90 \\ \hline 
+ df & 89 & 89 \\ \hline 
+ F & 1.0961428607950592 &   \\ \hline 
+ F critical & 0.7042808002041888 &   \\ \hline 
+ Equal variances assumed &  &    \\ \hline 
+  &  &     \\ \hline 
+  observations & 90 &  \\ \hline 
+  df & 100 &  \\ \hline 
+  t Stat & -0.21742455014656503 &  \\ \hline 
+  P two-tail & 0.8281265270658065 &  \\ \hline 
+  t Critical two-tail & 1.984 &  \\ \hline 
+  Nether random\_gen\_\_tournament\_parent\_\_tournament\_survival\_\_comma nor random\_gen\_\_fitness\_proportional\_parent\_\_fitness\_proportional\_survival\_\_comma is statistically better &  &   \\ \hline 
+  \end{tabular}%     
+}                    
+\end{table}
+
+\begin{table}[] 
+\tablecaption{TODO caption}        
+\label{TODO label}                 
+\resizebox{\textwidth}{!}{%        
+\begin{tabular}{|l|l|l|}           
+\hline               
+  & random\_gen\_\_fitness\_proportional\_parent\_\_tournament\_survival\_\_plus & random\_gen\_\_tournament\_parent\_\_fitness\_proportional\_survival\_\_plus  \\ \hline 
+ mean & 1.1900153275106076 & 0.9222749663618832 \\ \hline 
+ variance & 0.56922309186753 & 0.6628975581945191 \\ \hline 
+ standard deviation & 0.7544687481052678 & 0.814185211235453 \\ \hline 
+ observations & 90 & 90 \\ \hline 
+ df & 89 & 89 \\ \hline 
+ F & 0.8586893779151596 &   \\ \hline 
+ F critical & 0.7042808002041888 &   \\ \hline 
+ Unequal variances assumed &  &    \\ \hline 
+  &  &     \\ \hline 
+  observations & 90 &  \\ \hline 
+  df & 91 &  \\ \hline 
+  t Stat & 2.275528242233756 &  \\ \hline 
+  P two-tail & 0.02407306500131702 &  \\ \hline 
+  t Critical two-tail & 1.9864 &  \\ \hline 
+  random\_gen\_\_fitness\_proportional\_parent\_\_tournament\_survival\_\_plus is statistically better than random\_gen\_\_tournament\_parent\_\_fitness\_proportional\_survival\_\_plus &  &   \\ \hline 
+  \end{tabular}%     
+}                    
+\end{table}
+
+\begin{table}[] 
+\tablecaption{TODO caption}        
+\label{TODO label}                 
+\resizebox{\textwidth}{!}{%        
+\begin{tabular}{|l|l|l|}           
+\hline               
+  & random\_gen\_\_fitness\_proportional\_parent\_\_tournament\_survival\_\_comma & random\_gen\_\_tournament\_parent\_\_fitness\_proportional\_survival\_\_comma  \\ \hline 
+ mean & 1.1186544987668479 & 1.0557988630231474 \\ \hline 
+ variance & 0.5311136965722282 & 0.5221373804886605 \\ \hline 
+ standard deviation & 0.7287754774772737 & 0.7225907420446657 \\ \hline 
+ observations & 90 & 90 \\ \hline 
+ df & 89 & 89 \\ \hline 
+ F & 1.0171914833509275 &   \\ \hline 
+ F critical & 0.7042808002041888 &   \\ \hline 
+ Unequal variances assumed &  &    \\ \hline 
+  &  &     \\ \hline 
+  observations & 90 &  \\ \hline 
+  df & 91 &  \\ \hline 
+  t Stat & 0.5777943233491296 &  \\ \hline 
+  P two-tail & 0.564133232652437 &  \\ \hline 
+  t Critical two-tail & 1.9864 &  \\ \hline 
+  Nether random\_gen\_\_tournament\_parent\_\_fitness\_proportional\_survival\_\_comma nor random\_gen\_\_fitness\_proportional\_parent\_\_tournament\_survival\_\_comma is statistically better &  &   \\ \hline 
+  \end{tabular}%     
+}                    
+\end{table}
+
+\begin{table}[] 
+\tablecaption{TODO caption}        
+\label{TODO label}                 
+\resizebox{\textwidth}{!}{%        
+\begin{tabular}{|l|l|l|}           
+\hline               
+  & random\_gen\_\_tournament\_parent\_\_tournament\_survival\_\_comma & random\_gen\_\_tournament\_parent\_\_tournament\_survival\_\_plus  \\ \hline 
+ mean & 1.0534509493717248 & 1.1621500278718002 \\ \hline 
+ variance & 0.5246394448913503 & 0.5788550823616683 \\ \hline 
+ standard deviation & 0.724319987913733 & 0.7608252640137999 \\ \hline 
+ observations & 90 & 90 \\ \hline 
+ df & 89 & 89 \\ \hline 
+ F & 0.9063398782833109 &   \\ \hline 
+ F critical & 0.7042808002041888 &   \\ \hline 
+ Equal variances assumed &  &    \\ \hline 
+  &  &     \\ \hline 
+  observations & 90 &  \\ \hline 
+  df & 100 &  \\ \hline 
+  t Stat & -0.9761931904577807 &  \\ \hline 
+  P two-tail & 0.33029355296868534 &  \\ \hline 
+  t Critical two-tail & 1.984 &  \\ \hline 
+  Nether random\_gen\_\_tournament\_parent\_\_tournament\_survival\_\_plus nor random\_gen\_\_tournament\_parent\_\_tournament\_survival\_\_comma is statistically better &  &   \\ \hline 
+  \end{tabular}%     
+}                    
+\end{table}
+
