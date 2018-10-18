@@ -48,12 +48,6 @@ for q in range(len(config.log_file_paths)):
                 
                 max_num_evals = max(eval_dict[eval_num][6], max_num_evals)
 
-        # Adjust the counts up to the largest count
-        '''
-        for eval_num in eval_dict:
-            eval_dict[eval_num][2] = max_num_evals
-        '''
-
         evals = []
         avg_shine_ratios = []
         best_shine_ratios = []
