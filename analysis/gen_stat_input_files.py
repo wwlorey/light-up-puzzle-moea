@@ -2,14 +2,21 @@
 
 import analysis_config as config
 
+BEST_INVERSE_CONSTR = 2
+
 for i in range(len(config.log_file_paths)):
     with open(config.log_file_paths[i], 'r') as log_file:
-        # Create a list of lines from the log file, disregarding all config parmeters and empty lines
+        # Create a list of lines from the log file, disregarding all config parameters and empty lines
         log_text = log_file.read().split('\n')
         log_text = [line for line in log_text[log_text.index('Run 1'):] if not line == '']
 
-        last_best_fits = []
-        all_best_fits = []
+        last_best_ratios = []
+        all_best_ratios = []
+        last_best_bulb_constrs = []
+        all_best_bulb_constrs = []
+        last_best_black_constrs = []
+        all_best_black_constrs = []
+
         prev_run_count = 1
 
         # Scrape average fitness data from the log file
@@ -17,19 +24,41 @@ for i in range(len(config.log_file_paths)):
             if line[0] == 'R':
                 curr_run_count = int(line.split()[1])
                 if not prev_run_count == curr_run_count:
-                    last_best_fits.append(all_best_fits[-1])
+                    last_best_ratios.append(all_best_ratios[-1])
+                    last_best_bulb_constrs.append(all_best_bulb_constrs[-1])
+                    last_best_black_constrs.append(all_best_black_constrs[-1])
                     prev_run_count = curr_run_count
 
             else:
                 # This line has eval and fitness data
                 line = line.split('\t')
 
-                # Append the average fitness
-                all_best_fits.append(line[2])
+                # Append the best ratio
+                all_best_ratios.append(line[2])
 
-        last_best_fits.append(all_best_fits[-1])
+                # Append the inverse of the constraints violated to ensure a maximization problem
+                if float(line[4]) == 0.0:
+                    all_best_bulb_constrs.append(BEST_INVERSE_CONSTR)
+                else:
+                    all_best_bulb_constrs.append(1 / float(line[4]))
+                    
+                if float(line[6]) == 0.0:
+                    all_best_black_constrs.append(BEST_INVERSE_CONSTR)
+                else:
+                    all_best_black_constrs.append(1 / float(line[6]))
+
+        last_best_ratios.append(all_best_ratios[-1])
+        last_best_bulb_constrs.append(all_best_bulb_constrs[-1])
+        last_best_black_constrs.append(all_best_black_constrs[-1])
         
-    # Write the last (local) best fitnesses to a file
+    # Write the last (local) best fitnesses to a file in three groups
+    # 1: best ratios
+    # 2: best bulb constraints
+    # 3: best black cell constraints
     with open(config.log_file_paths[i][:config.log_file_paths[i].find('log')] + 'last_best_local_fits.txt', 'w') as out:
-        for fit in last_best_fits:
-            out.write(fit + '\n')
+        for lst in [last_best_ratios, last_best_bulb_constrs, last_best_black_constrs]:
+            for fit in lst:
+                out.write(str(fit) + '\n')
+            
+            out.write('\n')
+
