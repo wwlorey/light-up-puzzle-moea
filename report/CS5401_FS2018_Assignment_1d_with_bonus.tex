@@ -80,6 +80,18 @@ until the end of the experiment.
 
 \section{Impact of Initialization on MOEA Performance}
 
+The effect of Validity Enforced plus Uniform Random versus Uniform Random initialization
+was examined in this experiment. One would assume that an initialization method utilizing Validity
+Enforced initialization would outperform a solely Uniform Random initialization. After performing 
+statistical analysis on the experiment data, it was concluded that there is no tangible difference
+between the initialization methods. Table \ref{init_random} and Table \ref{init_provided} 
+each display statistical analysis for this finding. 
+
+This statistical analysis consisted of performing an f-test, which determined if variances could be
+treated as equal. In both cases, the f-test yielded that unequal variances should be assumed. Follow
+int the f-test, the two-tailed t-test was performed assuming unequal variances. This test yielded
+(in both cases) that neither initialization method was better.
+
 
 \section{Comparison of Parent Selection, Survival Strategy, and Survival Selection Strategies}
 
@@ -96,7 +108,7 @@ TODO: need to create config files and run test for this
 
 \begin{table}[] 
 \tablecaption{Uniform Random and Validity Enforced Uniform Random Initialized, Randomly Generated Puzzle, EA configurations}        
-\label{TODO label}                 
+\label{init_random}                 
 \resizebox{\textwidth}{!}{%        
 \begin{tabular}{|l|l|l|}           
 \hline               
@@ -123,7 +135,7 @@ TODO: need to create config files and run test for this
 
 \begin{table}[] 
 \tablecaption{Uniform Random and Validity Enforced Uniform Random Initialized, Provided Puzzle, EA configurations}
-\label{TODO label}                 
+\label{init_provided}                 
 \resizebox{\textwidth}{!}{%        
 \begin{tabular}{|l|l|l|}           
 \hline               
@@ -150,7 +162,7 @@ TODO: need to create config files and run test for this
 
 \begin{table}[] 
 \tablecaption{Fitness Proportional Parent \& Survival Selection Configuration vs Tournament Parent \& Survival Selection Configuration, Randomly Generated Puzzle, Plus Survival Strategy}
-\label{TODO label}                 
+\label{fitness_tourny_plus}                 
 \resizebox{\textwidth}{!}{%        
 \begin{tabular}{|l|l|l|}           
 \hline               
@@ -178,7 +190,7 @@ TODO: need to create config files and run test for this
 
 \begin{table}[] 
 \tablecaption{Fitness Proportional Parent \& Survival Selection Configuration vs Tournament Parent \& Survival Selection Configuration, Randomly Generated Puzzle, Comma Survival Strategy}
-\label{TODO label}                 
+\label{fitness_tourny_comma}                 
 \resizebox{\textwidth}{!}{%        
 \begin{tabular}{|l|l|l|}           
 \hline               
@@ -206,7 +218,7 @@ TODO: need to create config files and run test for this
 
 \begin{table}[] 
 \tablecaption{Fitness Proportional Parent Selection \& Tournament Survival Selection Configuration vs Tournament Parent Selection \& Fitness Proportional Survival Selection Configuration, Randomly Generated Puzzle, Plus Survival Strategy}
-\label{TODO label}                 
+\label{fitness_tourny_tourny_fitness_plus}                 
 \resizebox{\textwidth}{!}{%        
 \begin{tabular}{|l|l|l|}           
 \hline               
@@ -234,7 +246,7 @@ TODO: need to create config files and run test for this
 
 \begin{table}[] 
 \tablecaption{Fitness Proportional Parent Selection \& Tournament Survival Selection Configuration vs Tournament Parent Selection \& Fitness Proportional Survival Selection, Randomly Generated Puzzle, Comma Survival Strategy}       
-\label{TODO label}                 
+\label{fitness_tourny_tourny_fitness_comma}                 
 \resizebox{\textwidth}{!}{%        
 \begin{tabular}{|l|l|l|}           
 \hline               
@@ -262,7 +274,7 @@ TODO: need to create config files and run test for this
 
 \begin{table}[] 
 \tablecaption{Tournament Parent \& Survival Selection (Comma Survival Strategy) vs Tournament Parent \& Survival Selection (Plus Selection Strategy), Randomly Generated Puzzle}        
-\label{TODO label}                 
+\label{tourny_comma_tourny_plus}                 
 \resizebox{\textwidth}{!}{%        
 \begin{tabular}{|l|l|l|}           
 \hline               
