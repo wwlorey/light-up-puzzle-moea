@@ -60,5 +60,4 @@ for i in range(len(config.log_file_paths)):
             for fit in lst:
                 out.write(str(fit) + '\n')
             
-            out.write('\n')
 

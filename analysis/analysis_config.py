@@ -1,4 +1,6 @@
 log_file_paths = [
+                    'random_gen/random_gen',
+                    'random_gen/random_gen_uniform_random_init',
                     'random_gen/random_gen__fitness_proportional_parent__fitness_proportional_survival__comma_',
                     'random_gen/random_gen__tournament_parent__fitness_proportional_survival__comma_',
                     'random_gen/random_gen__fitness_proportional_parent__fitness_proportional_survival__plus_',
@@ -7,7 +9,6 @@ log_file_paths = [
                     'random_gen/random_gen__tournament_parent__tournament_survival__comma_',
                     'random_gen/random_gen__fitness_proportional_parent__tournament_survival__plus_',
                     'random_gen/random_gen__tournament_parent__tournament_survival__plus_',
-                    'random_gen/random_gen_uniform_random_init',
 
                     'website_puzzle/website_puzzle',
                     'website_puzzle/website_puzzle_uniform_random_init'
@@ -17,59 +18,15 @@ log_file_paths = [
 log_file_paths = ['../output/' + filename + '_log.txt' for filename in log_file_paths]
 
 
-# Compare general improvements between penalty function EA, repair function EA,
-# and plain-vanilla EA
 test_cases = \
     [
         (
-            '../output/random_gen/random_gen_validity_enforced_last_best_local_fits.txt',
-            '../output/random_gen_bonus/random_gen_validity_enforced_bonus_last_best_local_fits.txt',
-            # '../output/random_gen_vanilla/random_gen_validity_enforced_vanilla_last_best_local_fits.txt'
+            '../output/random_gen/random_gen_last_best_local_fits.txt',
+            '../output/random_gen/random_gen_uniform_random_init_last_best_local_fits.txt'
         ),
         (
-            '../output/website_puzzle/website_puzzle_validity_enforced_last_best_local_fits.txt',
-            '../output/website_puzzle_bonus/website_puzzle_validity_enforced_bonus_last_best_local_fits.txt',
-            # '../output/website_puzzle_vanilla/website_puzzle_validity_enforced_vanilla_last_best_local_fits.txt'
-        ),
-
-# Compare uniform random EA vs validity enforced EA
-        (
-            '../output/random_gen/random_gen_uniform_random_last_best_local_fits.txt',
-            '../output/random_gen/random_gen_validity_enforced_last_best_local_fits.txt'
-        ),
-        (
-            '../output/random_gen_bonus/random_gen_uniform_random_bonus_last_best_local_fits.txt',
-            '../output/random_gen_bonus/random_gen_validity_enforced_bonus_last_best_local_fits.txt'
-        ),
-        (
-            '../output/random_gen_vanilla/random_gen_uniform_random_vanilla_last_best_local_fits.txt',
-            '../output/random_gen_vanilla/random_gen_validity_enforced_vanilla_last_best_local_fits.txt'
-        ),
-        (
-            '../output/website_puzzle/website_puzzle_uniform_random_last_best_local_fits.txt',
-            '../output/website_puzzle/website_puzzle_validity_enforced_last_best_local_fits.txt'
-        ),
-        (
-            '../output/website_puzzle_bonus/website_puzzle_uniform_random_bonus_last_best_local_fits.txt',
-            '../output/website_puzzle_bonus/website_puzzle_validity_enforced_bonus_last_best_local_fits.txt',
-        ),
-        (
-            '../output/website_puzzle_vanilla/website_puzzle_uniform_random_vanilla_last_best_local_fits.txt',
-            '../output/website_puzzle_vanilla/website_puzzle_validity_enforced_vanilla_last_best_local_fits.txt',
-        ),
-
-# Compare the penalty function EA w/ multiple penalty coefficients
-        (
-            '../output/website_puzzle/website_puzzle_validity_enforced_last_best_local_fits.txt',
-            '../output/website_puzzle/website_puzzle_validity_enforced_large_penalty_last_best_local_fits.txt'
-        ),
-        (
-            '../output/website_puzzle/website_puzzle_validity_enforced_small_penalty_last_best_local_fits.txt',
-            '../output/website_puzzle/website_puzzle_validity_enforced_large_penalty_last_best_local_fits.txt'
-        ),
-        (
-            '../output/website_puzzle/website_puzzle_validity_enforced_small_penalty_last_best_local_fits.txt',
-            '../output/website_puzzle/website_puzzle_validity_enforced_last_best_local_fits.txt'
+            '../output/website_puzzle/website_puzzle_last_best_local_fits.txt',
+            '../output/website_puzzle/website_puzzle_uniform_random_init_last_best_local_fits.txt'
         )
     ]
 

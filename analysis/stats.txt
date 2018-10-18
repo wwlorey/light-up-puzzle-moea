@@ -1,0 +1,38 @@
+ ,random_gen, random_gen_uniform_random_init
+mean, 1.1032528479567796, 1.0764116503308312
+variance, 0.5771562510229628, 0.5665987346326673
+standard deviation, 0.7597080037902475, 0.7527275301413303
+observations, 90, 90
+df, 89, 89
+F, 1.018633145019535
+F critical, 0.7042808002041888
+Unequal variances assumed
+
+observations, 90
+df, 91
+t Stat, 0.23677202742177048
+P two-tail, 0.8131059379632284
+t Critical two-tail, 1.9864
+Nether random_gen_uniform_random_init nor random_gen is statistically better
+
+
+
+ ,website_puzzle, website_puzzle_uniform_random_init
+mean, 0.8031737242867952, 0.7959489651519913
+variance, 0.734732706694364, 0.7417386264875153
+standard deviation, 0.8571655071772102, 0.8612424899454946
+observations, 90, 90
+df, 89, 89
+F, 0.9905547324313853
+F critical, 0.7042808002041888
+Unequal variances assumed
+
+observations, 90
+df, 91
+t Stat, 0.05609263818405474
+P two-tail, 0.9553309228197409
+t Critical two-tail, 1.9864
+Nether website_puzzle_uniform_random_init nor website_puzzle is statistically better
+
+
+
