@@ -6,10 +6,10 @@
 \setcounter{secnumdepth}{0}
 
 % Command definitions 
-\newcommand{\fitnessplotcaption}[1]{\caption{Evaluations versus Average Local Fitness and Evaluations versus 
-    Local Best Fitness for the \textbf{{#1}}, Averaged Over All Runs}}
+\newcommand{\fitnessplotcaption}[1]{\caption{Evaluations versus Average Local Subfitness and Evaluations versus 
+    Local Best Subfitness for the \textbf{{#1}}, Averaged Over All Runs}}
 
-\newcommand{\addgraphic}[1]{\centerline{\includegraphics[scale=0.6]{report/figures/{#1}.png}}}
+\newcommand{\addgraphic}[1]{\centerline{\includegraphics[scale=0.6]{output/#1__graph.png}}}
 
 \newcommand{\tablecaption}[1]{\caption{Statistical Analysis performed on the {#1}}}
 
@@ -82,16 +82,64 @@ until the end of the experiment.
 \section{Impact of Initialization on MOEA Performance}
 
 The effect of Validity Enforced plus Uniform Random versus Uniform Random initialization
-was examined in this experiment. One would assume that an initialization method utilizing Validity
+was examined in this experiment for both the provided puzzle and randomly generated puzzles.
+One would assume that an initialization method utilizing Validity
 Enforced initialization would outperform a solely Uniform Random initialization. After performing 
-statistical analysis on the experiment data, it was concluded that there is no tangible difference
-between the initialization methods. Table \ref{init_random} and Table \ref{init_provided} 
-each display statistical analysis for this finding. 
+statistical analysis on the experiment data, it was concluded that there is in fact no tangible difference
+between the initialization methods for the tested puzzles. Table \ref{init_random} and Table \ref{init_provided} 
+each display statistical analysis supporting this finding. 
 
 This statistical analysis consisted of performing an f-test, which determined if variances could be
-treated as equal. In both cases, the f-test yielded that unequal variances should be assumed. Follow
-int the f-test, the two-tailed t-test was performed assuming unequal variances. This test yielded
-(in both cases) that neither initialization method was better.
+treated as equal. In both cases, the f-test yielded that unequal variances should be assumed. Following
+ the f-test, the two-tailed t-test was performed assuming unequal variances. This test yielded
+(in both cases) that neither initialization method was statistically better for the set of Light Up
+puzzles tested.
+
+To visually interpret the data, plots of evaluations versus average local subfitness and evaluations 
+versus local best subfitness were graphed for each of the subfitnesses collected in this experiment (not
+including the bonus):
+ratio of lit cells to total number of white cells, number of bulbs shining on each other, and 
+number of black cell constraints not met. For concision, figures pertaining to only the provided puzzle
+are discussed in this section as the randomly generated puzzle results are quite similar. Figures 
+\ref{fig:website_v_ratio}, \ref{fig:website_v_shine}, \ref{fig:website_v_black}, 
+\ref{fig:website_u_ratio}, \ref{fig:website_u_shine}, and \ref{fig:website_u_black} depict experiment 
+plots for the provided puzzle while figures
+\ref{fig:random_gen_v_ratio}, \ref{fig:random_gen_v_shine}, \ref{fig:random_gen_v_black},
+\ref{fig:random_gen_u_ratio}, \ref{fig:random_gen_u_shine}, and \ref{fig:random_gen_u_black} depict 
+experiment plots for the randomly generated puzzle. 
+
+Figure \ref{fig:website_v_ratio} and Figure \ref{fig:website_u_ratio} depict the lit cell ratio subfitness
+plots for the Validity Enforced plus Uniform Random and Uniform Random initialized experiments,
+respectively. In the uniform random case (Figure \ref{fig:website_u_ratio}), both the average local
+list cell ratio and the local best lit cell ratio started lower than those of the validity enforced 
+experiment. However, as the experiments progressed, both the average and best subfitnesses of each
+experiment reached appreciatively the same point without the best subfitness plateauing. This implies
+that letting the experiment run for longer would produce a more fit solution, with respect to
+the lit cell ratio. Note that the lit cell ratio subfitness, the metric was maximized.
+
+Figure \ref{fig:website_v_shine} and Figure \ref{fig:website_u_shine} depict the evaluations versus
+subfitness plots for the bulb shine constraint violations. These plots behaved quite similarly to the
+lit cell ratio plots in that the Validity Enforced plus Uniform Random plot started with a higher average
+number of bulb shine constraints violated while the plain Uniform Random plot had a lower number of
+initial constraint violations. This is logical as enforcing validity has the potential to place more bulbs,
+which creates opportunity for more bulbs
+to shine on each other, further adding to the number of bulb shine violations. The local best for both
+plots stayed right at zero bulb constraint violations, implying that most, if not all, experiments always had
+at least one member of the population with no bulb shine constraints. Because this subfitness is to be
+minimized as part of the MOEA, it is peculiar that the average number of bulb constraints increases as 
+the experiments continue. This implies that as more bulbs are placed on the board, the multi-objective
+nature of the algorithm allows for more and more bulbs to shine on each other, keeping those individuals
+with more bulb-shine in the population so long as the levels of non-domination dictate it.
+
+The third subfitness, black cell constraint violations, was examined for both initialization
+schemes in Figure \ref{fig:website_v_black} and Figure \ref{fig:website_u_black}. Before examining
+these plots, it was hypothesized that the Validity Enforced plus Uniform Random initialization 
+method would be superior with respect to minimizing the black cell constraint violations when compared
+to the Uniform Random only initialization. While the statistical analysis was not granular enough to
+definitively prove this, the graphs provide anecdotal evidence that the Validity Enforced plus Uniform
+Random initialization method is in fact superior when it comes to the black cell constraint violations.
+This conclusion was drawn because the Validity Enforced plus Uniform Random method had lower average and
+local best black cell constraints violated at each point on the graph, across all experiments.
 
 
 \section{Comparison of Parent Selection, Survival Strategy, and Survival Selection Strategies}
@@ -101,11 +149,86 @@ int the f-test, the two-tailed t-test was performed assuming unequal variances. 
 
 TODO: need to create config files and run test for this
 
-% \begin{figure}
-%     \addgraphic{website_puzzle_validity_enforced_graph}
-%     \fitnessplotcaption{Penalty Function EA with the Validity Enforced, Provided Puzzle}
-%     \label{fig:website_puzzle_validity_enforced_graph}
-% \end{figure}
+
+% Validity Enforced plus Uniform Random Init. Figures
+
+\begin{figure}
+    \addgraphic{website_puzzle/website_puzzle_lit_cell_ratio}
+    \fitnessplotcaption{Lit Cell Ratio Subfitness, Validity Enforced plus Uniform Random Initialized, Provided Puzzle}
+    \label{fig:website_v_ratio}
+\end{figure}
+
+\begin{figure}
+    \addgraphic{website_puzzle/website_puzzle_bulb_shine_constr}
+    \fitnessplotcaption{Bulb Shine Constraint Subfitness, Validity Enforced plus Uniform Random Initialized, Provided Puzzle}
+    \label{fig:website_v_shine}
+\end{figure}
+
+\begin{figure}
+    \addgraphic{website_puzzle/website_puzzle_black_cell_constr}
+    \fitnessplotcaption{Black Cell Constraint Subfitness, Validity Enforced plus Uniform Random Initialized, Provided Puzzle}
+    \label{fig:website_v_black}
+\end{figure}
+
+\begin{figure}
+    \addgraphic{random_gen/random_gen_lit_cell_ratio}
+    \fitnessplotcaption{Lit Cell Ratio Subfitness, Validity Enforced plus Uniform Random Initialized, Randomly Generated Puzzle}
+    \label{fig:random_gen_v_ratio}
+\end{figure}
+
+\begin{figure}
+    \addgraphic{random_gen/random_gen_bulb_shine_constr}
+    \fitnessplotcaption{Bulb Shine Constraint Subfitness, Validity Enforced plus Uniform Random Initialized, Randomly Generated Puzzle}
+    \label{fig:random_gen_v_shine}
+\end{figure}
+
+\begin{figure}
+    \addgraphic{random_gen/random_gen_black_cell_constr}
+    \fitnessplotcaption{Black Cell Constraint Subfitness, Validity Enforced plus Uniform Random Initialized, Randomly Generated Puzzle}
+    \label{fig:random_gen_v_black}
+\end{figure}
+
+
+% Uniform Random Init. Figures
+
+\begin{figure}
+    \addgraphic{website_puzzle/website_puzzle_uniform_random_init_lit_cell_ratio}
+    \fitnessplotcaption{Lit Cell Ratio Subfitness, Uniform Random Initialized, Provided Puzzle}
+    \label{fig:website_u_ratio}
+\end{figure}
+
+\begin{figure}
+    \addgraphic{website_puzzle/website_puzzle_uniform_random_init_bulb_shine_constr}
+    \fitnessplotcaption{Bulb Shine Constraint Subfitness, Uniform Random Initialized, Provided Puzzle}
+    \label{fig:website_u_shine}
+\end{figure}
+
+\begin{figure}
+    \addgraphic{website_puzzle/website_puzzle_uniform_random_init_black_cell_constr}
+    \fitnessplotcaption{Black Cell Constraint Subfitness, Uniform Random Initialized, Provided Puzzle}
+    \label{fig:website_u_black}
+\end{figure}
+
+\begin{figure}
+    \addgraphic{random_gen/random_gen_uniform_random_init_lit_cell_ratio}
+    \fitnessplotcaption{Lit Cell Ratio Subfitness, Uniform Random Initialized, Randomly Generated Puzzle}
+    \label{fig:random_gen_u_ratio}
+\end{figure}
+
+\begin{figure}
+    \addgraphic{random_gen/random_gen_uniform_random_init_bulb_shine_constr}
+    \fitnessplotcaption{Bulb Shine Constraint Subfitness, Uniform Random Initialized, Randomly Generated Puzzle}
+    \label{fig:random_gen_u_shine}
+\end{figure}
+
+\begin{figure}
+    \addgraphic{random_gen/random_gen_uniform_random_init_black_cell_constr}
+    \fitnessplotcaption{Black Cell Constraint Subfitness, Uniform Random Initialized, Randomly Generated Puzzle}
+    \label{fig:random_gen_u_black}
+\end{figure}
+
+
+% Statistical Analysis Tables
 
 \begin{table}[] 
 \tablecaption{Uniform Random and Validity Enforced Uniform Random Initialized, Randomly Generated Puzzle, EA configurations}        
@@ -295,3 +418,4 @@ TODO: need to create config files and run test for this
 \end{table}
 
 \end{document}
+
