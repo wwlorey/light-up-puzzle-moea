@@ -51,12 +51,19 @@ for i in range(len(config.log_file_paths)):
         last_best_bulb_constrs.append(float(all_best_bulb_constrs[-1]))
         last_best_black_constrs.append(float(all_best_black_constrs[-1]))
         
-    # Write the last (local) best fitnesses to a file as averages of:
+    # Write the last (local) best subfitnesses (listed below) to three separate files
     # 1: best ratios
     # 2: best bulb constraints
     # 3: best black cell constraints
-    with open(config.log_file_paths[i][:config.log_file_paths[i].find('log')] + 'last_best_local_fits.txt', 'w') as out:
+    with open(config.log_file_paths[i][:config.log_file_paths[i].find('log')] + 'last_best_local_ratios.txt', 'w') as out:
         for k in range(len(last_best_ratios)):
-            fit = (last_best_ratios[k] + last_best_black_constrs[k] + last_best_bulb_constrs[k]) / 3.0
-            out.write(str(fit) + '\n')
+            out.write(str(last_best_ratios[k]) + '\n')
+
+    with open(config.log_file_paths[i][:config.log_file_paths[i].find('log')] + 'last_best_local_bulb_constrs.txt', 'w') as out:
+        for k in range(len(last_best_ratios)):
+            out.write(str(last_best_bulb_constrs[k]) + '\n')
+
+    with open(config.log_file_paths[i][:config.log_file_paths[i].find('log')] + 'last_best_local_black_constrs.txt', 'w') as out:
+        for k in range(len(last_best_ratios)):
+            out.write(str(last_best_black_constrs[k]) + '\n')
 
