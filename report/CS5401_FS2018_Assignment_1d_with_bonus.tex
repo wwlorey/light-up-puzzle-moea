@@ -144,10 +144,46 @@ local best black cell constraints violated at each point on the graph, across al
 
 \section{Comparison of Parent Selection, Survival Strategy, and Survival Selection Strategies}
 
+The following MOEA configurations were compared to determine which combination was optimal.
+
+\begin{itemize}
+
+    \item Parent Selection
+    \begin{itemize}
+        \item Fitness Proportional
+        \item Binary Tournament
+    \end{itemize}
+
+    \item Survival Selection
+    \begin{itemize}
+        \item Fitness Proportional
+        \item Binary Tournament
+    \end{itemize}
+
+    \item Survival Strategy 
+    \begin{itemize}
+        \item Plus
+        \item Comma
+    \end{itemize}
+
+\end{itemize}
+
+Note that for these comparisons, all MOEA configurations were tested against randomly generated puzzles
+for concision.
+
+Tables \ref{outline1}, \ref{outline2}, \ref{outline3}, \ref{outline4}, and \ref{outline5}
+outline the type of configurations compared, the figures associated
+with each MOEA, and the table containing statistical analysis results for each comparison.
+
+    
+
 
 \section{BONUS \#1: Impact of Increasing Number of Objectives on Number of Non-Domination and MOEA Performance}
 
 TODO: need to create config files and run test for this
+
+
+\section{Appendix: Figures and Tables}
 
 
 % Validity Enforced plus Uniform Random Init. Figures
@@ -226,6 +262,114 @@ TODO: need to create config files and run test for this
     \fitnessplotcaption{Black Cell Constraint Subfitness, Uniform Random Initialized, Randomly Generated Puzzle}
     \label{fig:random_gen_u_black}
 \end{figure}
+
+
+% Other EA Config Comparison Figures
+
+%\begin{figure}
+%    \addgraphic{random_gen/random_gen}
+%    \fitnessplotcaption{}
+%    \label{fig:}
+%\end{figure}
+
+
+% Configuration Comparison Outline Tables
+
+\begin{table}[]
+\centering
+\caption{Fitness Proportional Parent \& Survival Selection Configuration vs Tournament Parent \& Survival 
+Selection Configuration, Randomly Generated Puzzle, Comma Survival Strategy, Comparison Info}
+\label{outline1}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{l|ll}
+ & Configuration A & Configuration B \\ \hline
+ Parent Selection & Fitness Proportional & Tournament Selection \\ \hline
+ Survival Selection & Fitness Proportional & Tournament Selection \\ \hline
+ Survival Strategy & Plus & Plus \\ \hline
+ \begin{tabular}[c]{@{}l@{}}Subfitness 1 Graph\\ (lit cell ratio)\end{tabular} & Figure N/A & Figure N/A \\ \hline
+ \begin{tabular}[c]{@{}l@{}}Subfitness 2 Graph\\ (bulb shine constraint\\ violations)\end{tabular} & Figure N/A & Figure N/A \\ \hline
+ \begin{tabular}[c]{@{}l@{}}Subfitness 3 Graph\\ (black cell constraint\\ violations)\end{tabular} & Figure N/A & Figure N/A \\ \hline
+ \textbf{Statistical Analysis} & \multicolumn{2}{l}{\textbf{Table \ref{fitness_tourny_plus}}}
+ \end{tabular}%
+ }
+ \end{table}
+
+\begin{table}[]
+\centering
+\caption{Fitness Proportional Parent \& Survival Selection Configuration vs Tournament Parent \& Survival Selection Configuration, Randomly
+Generated Puzzle, Comma Survival Strategy, Comparison Info}
+\label{outline2}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{l|ll}
+ & Configuration A & Configuration B \\ \hline
+ Parent Selection & Fitness Proportional & Tournament Selection \\ \hline
+ Survival Selection & Fitness Proportional & Tournament Selection \\ \hline
+ Survival Strategy & Comma & Comma \\ \hline
+ \begin{tabular}[c]{@{}l@{}}Subfitness 1 Graph\\ (lit cell ratio)\end{tabular} & Figure N/A & Figure N/A \\ \hline
+ \begin{tabular}[c]{@{}l@{}}Subfitness 2 Graph\\ (bulb shine constraint\\ violations)\end{tabular} & Figure N/A & Figure N/A \\ \hline
+ \begin{tabular}[c]{@{}l@{}}Subfitness 3 Graph\\ (black cell constraint\\ violations)\end{tabular} & Figure N/A & Figure N/A \\ \hline
+ \textbf{Statistical Analysis} & \multicolumn{2}{l}{\textbf{Table \ref{fitness_tourny_comma}}}
+ \end{tabular}%
+ }
+ \end{table}
+
+\begin{table}[]
+\centering
+\caption{Fitness Proportional Parent Selection \& Tournament Survival Selection Configuration vs 
+Tournament Parent Selection \& Fitness Proportional Survival Selection Configuration, Randomly Generated Puzzle, Plus Survival Strategy, Comparison Info}
+\label{outline3}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{l|ll}
+ & Configuration A & Configuration B \\ \hline
+ Parent Selection & Fitness Proportional & Tournament Selection \\ \hline
+ Survival Selection & Tournament Selection & Fitness Proportional Selection \\ \hline
+ Survival Strategy & Plus & Plus \\ \hline
+ \begin{tabular}[c]{@{}l@{}}Subfitness 1 Graph\\ (lit cell ratio)\end{tabular} & Figure N/A & Figure N/A \\ \hline
+ \begin{tabular}[c]{@{}l@{}}Subfitness 2 Graph\\ (bulb shine constraint\\ violations)\end{tabular} & Figure N/A & Figure N/A \\ \hline
+ \begin{tabular}[c]{@{}l@{}}Subfitness 3 Graph\\ (black cell constraint\\ violations)\end{tabular} & Figure N/A & Figure N/A \\ \hline
+ \textbf{Statistical Analysis} & \multicolumn{2}{l}{\textbf{Table \ref{fitness_tourny_tourny_fitness_plus}}}
+ \end{tabular}%
+ }
+ \end{table}
+
+\begin{table}[]
+\centering
+\caption{Fitness Proportional Parent Selection \&
+Tournament Survival Selection Configuration vs Tournament Parent Selection \& Fitness Proportional Survival Selection, 
+Randomly Generated Puzzle, Comma Survival Strategy, Comparison Info}
+\label{outline4}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{l|ll}
+ & Configuration A & Configuration B \\ \hline
+ Parent Selection & Fitness Proportional & Tournament Selection \\ \hline
+ Survival Selection & Tournament Selection & Fitness Proportional \\ \hline
+ Survival Strategy & Comma & Comma \\ \hline
+ \begin{tabular}[c]{@{}l@{}}Subfitness 1 Graph\\ (lit cell ratio)\end{tabular} & Figure N/A & Figure N/A \\ \hline
+ \begin{tabular}[c]{@{}l@{}}Subfitness 2 Graph\\ (bulb shine constraint\\ violations)\end{tabular} & Figure N/A & Figure N/A \\ \hline
+ \begin{tabular}[c]{@{}l@{}}Subfitness 3 Graph\\ (black cell constraint\\ violations)\end{tabular} & Figure N/A & Figure N/A \\ \hline
+ \textbf{Statistical Analysis} & \multicolumn{2}{l}{\textbf{Table \ref{fitness_tourny_tourny_fitness_comma}}}
+ \end{tabular}%
+ }
+ \end{table}
+
+\begin{table}[]
+\centering
+\caption{Tournament Parent \& Survival Selection (Comma Survival Strategy) vs Tournament Parent \& 
+Survival Selection (Plus Selection Strategy), Randomly Generated Puzzle, Comparison Info}
+\label{outline5}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{l|ll}
+ & Configuration A & Configuration B \\ \hline
+ Parent Selection & Tournament Selection & Tournament Selection \\ \hline
+ Survival Selection & Tournament Selection & Tournament Selection \\ \hline
+ Survival Strategy & Comma & Plus \\ \hline
+ \begin{tabular}[c]{@{}l@{}}Subfitness 1 Graph\\ (lit cell ratio)\end{tabular} & Figure N/A & Figure N/A \\ \hline
+ \begin{tabular}[c]{@{}l@{}}Subfitness 2 Graph\\ (bulb shine constraint\\ violations)\end{tabular} & Figure N/A & Figure N/A \\ \hline
+ \begin{tabular}[c]{@{}l@{}}Subfitness 3 Graph\\ (black cell constraint\\ violations)\end{tabular} & Figure N/A & Figure N/A \\ \hline
+ \textbf{Statistical Analysis} & \multicolumn{2}{l}{\textbf{Table \ref{tourny_comma_tourny_plus}}}
+ \end{tabular}%
+ }
+ \end{table}
 
 
 % Statistical Analysis Tables
