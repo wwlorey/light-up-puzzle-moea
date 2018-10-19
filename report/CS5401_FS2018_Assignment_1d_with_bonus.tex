@@ -173,9 +173,44 @@ for concision.
 
 Tables \ref{outline1}, \ref{outline2}, \ref{outline3}, \ref{outline4}, and \ref{outline5}
 outline the type of configurations compared, the figures associated
-with each MOEA, and the table containing statistical analysis results for each comparison.
+with each MOEA, and the table containing statistical analysis results for each comparison, where 
+applicable. Note: not all MOEA configuration subfitness graphs are included in this report for
+clarity.
 
-    
+TODO: ADD FIGURES? REMOVE FIGURE LABELS FROM OUTLINE TABLES?
+
+Table \ref{outline1} outlines the comparison made between an MOEA configured with 
+fitness proportional parent and survival selection versus tournament
+parent and survival selection, both using the plus survival strategy. Table 
+\ref{fitness_tourny_plus} illustrates an f-test being applied resulting in equal variance assumption
+followed by a t-test assuming equal variances. The result of the t-test was that 
+the MOEA configuration employing tournament for both parent and survival selection was superior, for
+the given test cases, to the MOEA configured to use fitness proportional selection for both the 
+parent and survival selection. The fact that the binary tournament configuration produced the better
+performing algorithm means that a lower selection pressure drives up algorithm performance, as 
+a binary tournament applies less selection pressure than fitness proportional selection.
+
+The next comparison, outlined in Table \ref{outline2} and statistically analyzed in Table
+\ref{fitness_tourny_comma}, compared a fitness proportional parent and survival 
+selection configuration with a tournament parent and survival selection configuration, with both
+configurations using a comma survival strategy. This comparison again involved an f-test which
+yielded that equal variances could be assumed, followed by a t-test assuming equal variances. The
+t-test yielded that neither configuration was statistically better for the given test cases. Unlike
+for the plus survival strategy, the comma survival strategy does not seem to be as sensitive to
+selection pressure brought about by varying survival and parent selection methods. This may be 
+due to the fact that the comma survival strategy automatically removes all parent genotypes from the
+population after each subsequent generation, only allowing children genotypes to comprise each
+new generation, ensuring that stale, yet optimally fit, genotypes that have existed for generations
+are removed for new genotypes to take their place.
+
+The third comparison is outlined in Table \ref{outline3} and is statistically analyzed in Table
+\ref{fitness_tourny_tourny_fitness_plus}. This experiment yielded that the fitness proportional 
+parent selection and tournament survival selection configuration outperformed the 
+tournament parent selection and fitness proportional survival selection configuration. With 
+the statistical analysis of this comparison, unequal variances were assumed by the f-test and the
+t-test yielded the results mentioned above. This finding showed that higher selection pressure
+for parent selection (fitness proportional selection) was more effective than higher selection
+pressure for survival selection.
 
 
 \section{BONUS \#1: Impact of Increasing Number of Objectives on Number of Non-Domination and MOEA Performance}
