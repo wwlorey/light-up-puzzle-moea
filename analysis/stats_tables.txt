@@ -19,7 +19,8 @@
   t Stat & 0.47331304656977363 &  \\ \hline 
   P two-tail & 0.6377741699825987 &  \\ \hline 
   t Critical two-tail & 2.0395 &  \\ \hline 
-  Nether random\_gen\_uniform\_random\_init nor random\_gen is statistically better &  &   \\ \hline 
+  Nether random\_gen\_uniform\_random\_init nor & & \\
+ random\_gen is statistically better &  &   \\ \hline 
   \end{tabular}%     
 }                    
 \end{table}
@@ -45,7 +46,8 @@
   t Stat & 1.1263571505364551 &  \\ \hline 
   P two-tail & 0.26465388827990055 &  \\ \hline 
   t Critical two-tail & 2.0395 &  \\ \hline 
-  Nether website\_puzzle\_uniform\_random\_init nor website\_puzzle is statistically better &  &   \\ \hline 
+  Nether website\_puzzle\_uniform\_random\_init nor & & \\
+ website\_puzzle is statistically better &  &   \\ \hline 
   \end{tabular}%     
 }                    
 \end{table}
@@ -97,7 +99,8 @@
   t Stat & -0.5215427512917932 &  \\ \hline 
   P two-tail & 0.6039746747540546 &  \\ \hline 
   t Critical two-tail & 2.0017 &  \\ \hline 
-  Nether random\_gen\_\_tournament\_parent\_\_tournament\_survival\_\_comma nor random\_gen\_\_fitness\_proportional\_parent\_\_fitness\_proportional\_survival\_\_comma is statistically better &  &   \\ \hline 
+  Nether random\_gen\_\_tournament\_parent\_\_tournament\_survival\_\_comma nor & & \\
+ random\_gen\_\_fitness\_proportional\_parent\_\_fitness\_proportional\_survival\_\_comma is statistically better &  &   \\ \hline 
   \end{tabular}%     
 }                    
 \end{table}
@@ -149,7 +152,8 @@
   t Stat & 1.221342582229864 &  \\ \hline 
   P two-tail & 0.22729007385576178 &  \\ \hline 
   t Critical two-tail & 2.0395 &  \\ \hline 
-  Nether random\_gen\_\_tournament\_parent\_\_fitness\_proportional\_survival\_\_comma nor random\_gen\_\_fitness\_proportional\_parent\_\_tournament\_survival\_\_comma is statistically better &  &   \\ \hline 
+  Nether random\_gen\_\_tournament\_parent\_\_fitness\_proportional\_survival\_\_comma nor & & \\
+ random\_gen\_\_fitness\_proportional\_parent\_\_tournament\_survival\_\_comma is statistically better &  &   \\ \hline 
   \end{tabular}%     
 }                    
 \end{table}
@@ -175,7 +179,8 @@
   t Stat & -1.9776642228780876 &  \\ \hline 
   P two-tail & 0.05349296004844127 &  \\ \hline 
   t Critical two-tail & 2.0395 &  \\ \hline 
-  Nether random\_gen\_\_tournament\_parent\_\_tournament\_survival\_\_plus nor random\_gen\_\_tournament\_parent\_\_tournament\_survival\_\_comma is statistically better &  &   \\ \hline 
+  Nether random\_gen\_\_tournament\_parent\_\_tournament\_survival\_\_plus nor & & \\
+ random\_gen\_\_tournament\_parent\_\_tournament\_survival\_\_comma is statistically better &  &   \\ \hline 
   \end{tabular}%     
 }                    
 \end{table}

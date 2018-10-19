@@ -67,6 +67,14 @@ with open('stats.txt', 'r') as f:
                 result_index += 1
                 next_insertion_index = output_table.find('+')
 
+            if 'nor' in output_table:
+                find_str1 = 'nor'
+                find_str2 = 'is statistically better'
+
+                nor_index = output_table.find(find_str1)
+                output_table = output_table[:nor_index + len(find_str1)] + ' & & \\\\\n' + \
+                    output_table[nor_index + len(find_str1):]
+
             output_f.write(output_table.replace('_', r'\_'))
             output_f.write('\n\n')
 
