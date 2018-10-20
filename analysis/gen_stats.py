@@ -60,13 +60,13 @@ def f_test(a, b):
     F_crit = stats.f.ppf(alpha, dfn=df_a, dfd=df_b)
 
     # Print information
-    print('mean, ' + str(mean_a) + ', ' + str(mean(b)))
-    print('variance, ' + str(var_a) + ', ' + str(var_b))
-    print('standard deviation, ' + str(std_dev_a) + ', ' + str(std_dev_b))
-    print('observations, ' + str(len(a)) + ', ' + str(len(b)))
-    print('df, ' + str(df_a) + ', ' + str(df_b))
-    print('F, ' + str(F))
-    print('F critical, ' + str(F_crit))
+    # print('mean, ' + str(mean_a) + ', ' + str(mean(b)))
+    # print('variance, ' + str(var_a) + ', ' + str(var_b))
+    # print('standard deviation, ' + str(std_dev_a) + ', ' + str(std_dev_b))
+    # print('observations, ' + str(len(a)) + ', ' + str(len(b)))
+    # print('df, ' + str(df_a) + ', ' + str(df_b))
+    # print('F, ' + str(F))
+    # print('F critical, ' + str(F_crit))
 
     # Determine the assumption
     if mean_a > mean_b and F < F_crit:
@@ -108,11 +108,11 @@ def t_test(a, b, assumption):
     t_crit = config.t_table[df]
 
     # Print information
-    print('observations, ' + str(len(a)))
-    print('df, ' + str(df))
-    print('t Stat, ' + str(t_stat))
-    print('P two-tail, ' + str(p))
-    print('t Critical two-tail, ' + str(t_crit))
+    # print('observations, ' + str(len(a)))
+    # print('df, ' + str(df))
+    # print('t Stat, ' + str(t_stat))
+    # print('P two-tail, ' + str(p))
+    # print('t Critical two-tail, ' + str(t_crit))
 
     if abs(t_stat) > abs(t_crit):
         # Reject the null hypothesis that the mean difference is zero
@@ -131,40 +131,81 @@ def t_test(a, b, assumption):
         return None
 
 
+def perform_analysis(tup1, tup2):
+    # How many times does tup1 win against tup2?
+    win_count = 0
+
+    # How many times does tup1 lose (or tie) against tup2?
+    lose_count = 0
+
+    for fname_index in range(len(tup1)):
+        fnames = [tup1[fname_index], tup2[fname_index]]
+
+        # Open and process the test files
+        test_data = []
+        for file in fnames:
+            output_name = file
+            output_name = output_name[output_name.replace('/', ' ', 2).find('/') + 1:output_name.find('_last')]
+            test_data.append(([float(d) for d in open(file, 'r').read().split('\n') if d], output_name))
+        
+        a_data = test_data[0][0]
+        b_data = test_data[1][0]
+
+        a_name = test_data[0][1]
+        b_name = test_data[1][1]
+
+        # print(' ,' + a_name + ', ' + b_name)
+
+        assumption = f_test(a_data, b_data)
+
+        if assumption == Assumptions.ASSUME_EQUAL_VARIANCES:
+            # print('Equal variances assumed')
+            pass
+        else:
+            # print('Unequal variances assumed')
+            pass
+
+        # print()
+
+        result = t_test(a_data, b_data, assumption)
+
+        if result == a_data:
+            # print(a_name + ' is statistically better than ' + b_name)
+            win_count += 1
+        elif result == b_data:
+            # print(b_name + ' is statistically better than ' + a_name)
+            lose_count += 1
+        else:
+            # print('Nether ' + b_name + ' nor ' + a_name + ' is statistically better')
+            lose_count += 1
+
+        # print('\n\n')
+    
+    if win_count > lose_count:
+        # The first configuration is superior
+        return True
+    else:
+        return False
+
+
 # Perform the statistical comparisons
-for test_case in config.test_cases:
-    # Open and process the test files
-    test_data = []
-    for file in test_case:
-        output_name = file
-        output_name = output_name[output_name.replace('/', ' ', 2).find('/') + 1:output_name.find('_last')]
-        test_data.append(([float(d) for d in open(file, 'r').read().split('\n') if d], output_name))
-    
-    a_data = test_data[0][0]
-    b_data = test_data[1][0]
+experiments = [config.random_gen_test_cases]#, config.website_puzzle_test_cases]
+experiment_titles = ['random_gen', 'website_puzzle']
+domination_list = [0] * len(experiments[0])
 
-    a_name = test_data[0][1]
-    b_name = test_data[1][1]
+for experiment_index, test_cases in enumerate(experiments):
+    for test_case_index, test_case in enumerate(test_cases):
+        for comp_test_case in test_cases:
+            if test_case != comp_test_case:
+                # Don't compare a test case to itself
+                result = perform_analysis(test_case, comp_test_case)
 
-    print(' ,' + a_name + ', ' + b_name)
+                if result:
+                    domination_list[test_case_index] += 1
 
-    assumption = f_test(a_data, b_data)
+    max_wins = max(domination_list)
+    print('Most optimal configuration(s) for %s:' % experiment_titles[experiment_index])
+    for i in range(len(domination_list)):
+        if domination_list[i] == max_wins:
+            print('test case index: ' + str(i))
 
-    if assumption == Assumptions.ASSUME_EQUAL_VARIANCES:
-        print('Equal variances assumed')
-    else:
-        print('Unequal variances assumed')
-
-    print()
-
-    result = t_test(a_data, b_data, assumption)
-
-    if result == a_data:
-        print(a_name + ' is statistically better than ' + b_name)
-    elif result == b_data:
-        print(b_name + ' is statistically better than ' + a_name)
-    else:
-        print('Nether ' + b_name + ' nor ' + a_name + ' is statistically better')
-
-    print('\n\n')
-    
