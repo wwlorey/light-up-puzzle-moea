@@ -204,6 +204,7 @@ for experiment_index, test_cases in enumerate(experiments):
                     domination_list[test_case_index] += 1
 
     max_wins = max(domination_list)
+    print(domination_list)
     print('Most optimal configuration(s) for %s:' % experiment_titles[experiment_index])
     for i in range(len(domination_list)):
         if domination_list[i] == max_wins:

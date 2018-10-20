@@ -90,7 +90,8 @@ between the initialization methods for the tested puzzles. Table \ref{init_rando
 each display statistical analysis supporting this finding. 
 
 This statistical analysis for this section was performed on the average of all last best subfitnesses, giving thirty
-data points to compare. The analysis consisted of performing an f-test, which determined if variances could be
+data points to compare for each MOEA initialization method. The analysis consisted of 
+performing an f-test, which determined if variances could be
 treated as equal. In both cases, the f-test yielded that unequal variances should be assumed. Following
  the f-test, the two-tailed t-test was performed assuming unequal variances. This test yielded
 (in both cases) that neither initialization method was statistically better for the set of Light Up
@@ -167,6 +168,41 @@ puzzles and the provided puzzle, to determine which configuration combination wa
         \item Comma
     \end{itemize}
 \end{itemize}
+
+Each combination of configurations resulted in \begin{math} n = 2^3 = 8 \end{math} distinct configurations. Each configuration
+was tested against each other configuration (excluding itself), resulting in  
+
+\[ n * (n - 1) = 8 * 7 = 56 \]
+
+comparisons. These 56 comparisons were performed for both the provided puzzle and the randomly generated puzzle.
+
+The explicit statistical analysis is not tabulated in this report for brevity, however, the statistical analysis
+methodology is as follows. First, the last best subfitness for each of the three subfitness were aggregated into separate 
+files for each of the configuration schemes listed above. This resulted in \begin{math} 3 * 8 = 24 \end{math} data files
+to drive the statistical analysis for each the provided puzzle and the randomly generated puzzle (48 in total).
+Following this, each possible pairing (in which order does matter) was performed, 
+comparing from each configuration each of the three last best subfitness lists using first an f-test to determine whether or not equal
+variances could be assumed followed by a two-tailed t-test assuming either equal or unequal variances (depending on the 
+outcome of the f-test). The f-test would then yield if a configuration was better with respect to each subfitness.
+If the number of a configuration's subfitness' superiorities outnumbered the number of a configuration's subfitness'
+subordinates for a given comparison, that configuration was marked as being better than another, incrementing a 
+dominance count associated with the configuration. The configuration(s) with the highest dominance count are statistically
+better than all other configurations tested, for the given test puzzles.
+
+The randomly generated puzzle configurations yielded two configurations that were both equally as optimal. These were MOEAs configured 
+with (1) fitness proportional parent selection, tournament survival selection, and plus survival strategy and (2) tournament parent
+selection, tournament survival selection, and plus survival strategy. Both of these solutions each were dominant to two other configurations
+out of all the other configurations. They were either at least as good as or subordinate to the other configurations.
+
+%        ('../output/random_gen/random_gen__fitness_proportional_parent__tournament_survival__plus__last_best_local_black_constrs.txt',
+
+%        ('../output/random_gen/random_gen__tournament_parent__tournament_survival__plus__last_best_local_black_constrs.txt',
+
+The provided puzzle configurations yielded one configuration that was optimal when compared to all other solutions. In fact,
+this configuration was the only solution that was statistically better than all other configurations. This configuration involved
+a tournament parent selection and tournament survival selection with a plus survival strategy.
+
+%        ('../output/website_puzzle/website_puzzle__tournament_parent__tournament_survival__plus__last_best_local_black_constrs.txt',
 
 
 \section{BONUS \#1: Impact of Increasing Number of Objectives on Number of Non-Domination and MOEA Performance}

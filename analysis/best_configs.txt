@@ -1,7 +1,9 @@
+[0, 0, 0, 2, 0, 0, 0, 2]
 Most optimal configuration(s) for random_gen:
 test case index: 3
 test case index: 7
 
+[0, 0, 0, 4, 0, 0, 0, 8]
 Most optimal configuration(s) for website_puzzle:
 test case index: 7
 
