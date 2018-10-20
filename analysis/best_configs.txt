@@ -1,0 +1,7 @@
+Most optimal configuration(s) for random_gen:
+test case index: 3
+test case index: 7
+
+Most optimal configuration(s) for website_puzzle:
+test case index: 7
+

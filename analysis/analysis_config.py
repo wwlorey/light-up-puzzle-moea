@@ -11,7 +11,15 @@ log_file_paths = [
                     'random_gen/random_gen__tournament_parent__tournament_survival__plus_',
 
                     'website_puzzle/website_puzzle',
-                    'website_puzzle/website_puzzle_uniform_random_init'
+                    'website_puzzle/website_puzzle_uniform_random_init',
+                    'website_puzzle/website_puzzle__fitness_proportional_parent__fitness_proportional_survival__comma_',
+                    'website_puzzle/website_puzzle__tournament_parent__fitness_proportional_survival__comma_',
+                    'website_puzzle/website_puzzle__fitness_proportional_parent__fitness_proportional_survival__plus_',
+                    'website_puzzle/website_puzzle__tournament_parent__fitness_proportional_survival__plus_',
+                    'website_puzzle/website_puzzle__fitness_proportional_parent__tournament_survival__comma_',
+                    'website_puzzle/website_puzzle__tournament_parent__tournament_survival__comma_',
+                    'website_puzzle/website_puzzle__fitness_proportional_parent__tournament_survival__plus_',
+                    'website_puzzle/website_puzzle__tournament_parent__tournament_survival__plus_'
                  ]
 
 

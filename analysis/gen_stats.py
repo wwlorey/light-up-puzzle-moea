@@ -189,7 +189,7 @@ def perform_analysis(tup1, tup2):
 
 
 # Perform the statistical comparisons
-experiments = [config.random_gen_test_cases]#, config.website_puzzle_test_cases]
+experiments = [config.random_gen_test_cases, config.website_puzzle_test_cases]
 experiment_titles = ['random_gen', 'website_puzzle']
 domination_list = [0] * len(experiments[0])
 
@@ -208,4 +208,5 @@ for experiment_index, test_cases in enumerate(experiments):
     for i in range(len(domination_list)):
         if domination_list[i] == max_wins:
             print('test case index: ' + str(i))
+    print()
 
