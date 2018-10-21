@@ -175,13 +175,28 @@ was tested against each other configuration (excluding itself), resulting in
 
 \[ n * (n - 1) = 8 * 7 = 56 \]
 
-comparisons per puzzle type. 56 comparisons were performed for both the provided puzzle and the randomly generated puzzle, 
-resulting in 112 comparisons total.
+comparisons per puzzle type. For each comparison, three statistical comparisons were made (each 
+involving an f-test followed by a t-test, described in more detail below) between the three 
+subfitnesses for each configuration. This resulted in \begin{math} 56 * 3 = 168 \end{math}
+statistical tests performed. For both the provided puzzle and the randomly generated puzzle, 
+this resulted in \begin{math} 168 * 2 = 336 \end{math} comparisons total.
 
-The explicit statistical analysis for each individual comparison is not tabulated in this report for brevity, however, the statistical analysis
-methodology is described as follows: First, the last best subfitness for each of the three subfitness were aggregated and written to separate 
-files for each of the configuration schemes listed above. This resulted in \begin{math} 3 * 8 = 24 \end{math} data files
-to drive the statistical analysis for each the provided puzzle and the randomly generated puzzle (48 in total).
+The explicit statistical analysis for each of the 336 individual comparisons is not tabulated in 
+this 
+report for brevity, however, an example of the statistical analysis performed for one of the 
+dominant MOEA configuration comparisons for both the provided puzzle and the randomly generated 
+puzzle can be found in tables \ref{}, \ref{}, and \ref{} for the provided puzzle experiments and in tables 
+\ref{}, \ref{}, and \ref{} for the randomly generated puzzle experiments.  Additionally, figures for one of the dominant MOEA configurations can be found in figures \ref{},
+\ref{}, and \ref{} for the provided puzzle experiments and in figures \ref{}, \ref{}, and \ref{} 
+for the randomly generated puzzle experiments. Note that these dominating configurations are described at length below in this section.
+
+The statistical analysis
+methodology is described as follows: First, the last best subfitness for each of the three 
+subfitness were aggregated and written to separate 
+files for each of the configuration schemes listed above. This resulted in 
+\begin{math} 3 * 8 = 24 \end{math} data files
+to drive the statistical analysis for each the provided puzzle and the randomly generated puzzle 
+(48 in total).
 Following this, each possible pairing (in which order does matter) was performed, 
 comparing from each configuration each of the three last best subfitness lists using first an f-test to determine whether or not equal
 variances could be assumed followed by a two-tailed t-test assuming either equal or unequal variances (depending on the 
