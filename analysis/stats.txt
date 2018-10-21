@@ -1,0 +1,115 @@
+ ,random_gen__fitness_proportional_parent__fitness_proportional_survival__comma_, random_gen__tournament_parent__tournament_survival__plus_
+mean, 0.4827645502645503, 1.0
+variance, 0.3007261451597099, 0.5472222222222223
+standard deviation, 0.5483850336758926, 0.7397447007057383
+observations, 30, 30
+df, 29, 29
+F, 0.5495503160278963
+F critical, 0.5373999648406917
+Equal variances assumed
+
+observations, 30
+df, 58
+t Stat, -3.024841182589063
+P two-tail, 0.003703278639359185
+t Critical two-tail, 2.0017
+random_gen__tournament_parent__tournament_survival__plus_ is statistically better than random_gen__fitness_proportional_parent__fitness_proportional_survival__comma_
+
+
+
+ ,random_gen__fitness_proportional_parent__fitness_proportional_survival__plus_, random_gen__tournament_parent__tournament_survival__plus_
+mean, 0.561190476190476, 1.0
+variance, 0.42458320105820113, 0.5472222222222223
+standard deviation, 0.6516004919106501, 0.7397447007057383
+observations, 30, 30
+df, 29, 29
+F, 0.7758880831520426
+F critical, 0.5373999648406917
+Equal variances assumed
+
+observations, 30
+df, 58
+t Stat, -2.397095764759235
+P two-tail, 0.019767792049039033
+t Critical two-tail, 2.0017
+random_gen__tournament_parent__tournament_survival__plus_ is statistically better than random_gen__fitness_proportional_parent__fitness_proportional_survival__plus_
+
+
+
+ ,random_gen__fitness_proportional_parent__fitness_proportional_survival__plus_, random_gen__tournament_parent__tournament_survival__plus_
+mean, 0.35268032880882605, 0.4864500836154015
+variance, 0.01582075351042015, 0.00448740286063112
+standard deviation, 0.12578057684086263, 0.06698807998913776
+observations, 30, 30
+df, 29, 29
+F, 3.525592419886963
+F critical, 0.5373999648406917
+Equal variances assumed
+
+observations, 30
+df, 58
+t Stat, -5.055006060309308
+P two-tail, 4.60221704581319e-06
+t Critical two-tail, 2.0017
+random_gen__tournament_parent__tournament_survival__plus_ is statistically better than random_gen__fitness_proportional_parent__fitness_proportional_survival__plus_
+
+
+
+ ,website_puzzle__fitness_proportional_parent__fitness_proportional_survival__comma_, website_puzzle__tournament_parent__tournament_survival__plus_
+mean, 0.03557475942533414, 0.045719133121307036
+variance, 1.0798324737368128e-06, 4.716790367219106e-05
+standard deviation, 0.001039149880304479, 0.006867889317118547
+observations, 30, 30
+df, 29, 29
+F, 0.022893374300487587
+F critical, 0.5373999648406917
+Unequal variances assumed
+
+observations, 30
+df, 31
+t Stat, -7.864765318971465
+P two-tail, 8.251713123765557e-09
+t Critical two-tail, 2.0395
+website_puzzle__tournament_parent__tournament_survival__plus_ is statistically better than website_puzzle__fitness_proportional_parent__fitness_proportional_survival__comma_
+
+
+
+ ,website_puzzle__fitness_proportional_parent__fitness_proportional_survival__comma_, website_puzzle__tournament_parent__tournament_survival__plus_
+mean, 0.33063063063063064, 0.3691441441441441
+variance, 0.0004167681194708223, 0.005361222709195682
+standard deviation, 0.020414899447972364, 0.07322037086218344
+observations, 30, 30
+df, 29, 29
+F, 0.07773751289159707
+F critical, 0.5373999648406917
+Unequal variances assumed
+
+observations, 30
+df, 31
+t Stat, -2.728498473507591
+P two-tail, 0.01005918482437467
+t Critical two-tail, 2.0395
+website_puzzle__tournament_parent__tournament_survival__plus_ is statistically better than website_puzzle__fitness_proportional_parent__fitness_proportional_survival__comma_
+
+
+
+
+ ,website_puzzle__fitness_proportional_parent__fitness_proportional_survival__plus_, website_puzzle__tournament_parent__tournament_survival__plus_
+mean, 0.03543878854223681, 0.045719133121307036
+variance, 6.924752843254994e-07, 4.716790367219106e-05
+standard deviation, 0.0008321509985125893, 0.006867889317118547
+observations, 30, 30
+df, 29, 29
+F, 0.014681069761719437
+F critical, 0.5373999648406917
+Unequal variances assumed
+
+observations, 30
+df, 31
+t Stat, -8.002369566124022
+P two-tail, 6.4560972436788905e-09
+t Critical two-tail, 2.0395
+website_puzzle__tournament_parent__tournament_survival__plus_ is statistically better than website_puzzle__fitness_proportional_parent__fitness_proportional_survival__plus_
+
+
+

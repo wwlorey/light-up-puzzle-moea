@@ -185,10 +185,10 @@ The explicit statistical analysis for each of the 336 individual comparisons is 
 this 
 report for brevity, however, an example of the statistical analysis performed for one of the 
 dominant MOEA configuration comparisons for both the provided puzzle and the randomly generated 
-puzzle can be found in tables \ref{}, \ref{}, and \ref{} for the provided puzzle experiments and in tables 
-\ref{}, \ref{}, and \ref{} for the randomly generated puzzle experiments.  Additionally, figures for one of the dominant MOEA configurations can be found in figures \ref{},
-\ref{}, and \ref{} for the provided puzzle experiments and in figures \ref{}, \ref{}, and \ref{} 
-for the randomly generated puzzle experiments. Note that these dominating configurations are described at length below in this section.
+puzzle can be found in tables \ref{tourny_web1}, \ref{tourny_web2}, and \ref{tourny_web3} for the provided puzzle experiments and in tables 
+\ref{tourny_rand1}, \ref{tourny_rand2}, and \ref{tourny_rand3} for the randomly generated puzzle experiments.  Additionally, figures for one of the dominant MOEA configurations can be found in figures \ref{fig:tourny_web1},
+\ref{fig:tourny_web2}, and \ref{fig:tourny_web3} for the provided puzzle experiments and in figures \ref{fig:tourny_rand1}, \ref{fig:tourny_rand2}, and \ref{fig:tourny_rand3} 
+for the randomly generated puzzle experiments. \textit{Note that these dominating configurations are described at length below in this section}.
 
 The statistical analysis
 methodology is described as follows: First, the last best subfitness for each of the three 
@@ -348,16 +348,52 @@ the document.}
 \end{figure}
 
 
-% Other EA Config Comparison Figures
+% In-depth Comparison Figures
 
-%\begin{figure}
-%    \addgraphic{random_gen/random_gen}
-%    \fitnessplotcaption{}
-%    \label{fig:}
-%\end{figure}
+\begin{figure}
+    \addgraphic{website_puzzle/website_puzzle__tournament_parent__tournament_survival__plus__lit_cell_ratio}
+    \fitnessplotcaption{Lit Cell Ratio Subfitness, Tournament Parent \& Survival Selection, Plus
+    Survival Strategy, Provided Puzzle}
+    \label{fig:tourny_web1}
+\end{figure}
+
+\begin{figure}
+    \addgraphic{website_puzzle/website_puzzle__tournament_parent__tournament_survival__plus__bulb_shine_constr}
+    \fitnessplotcaption{Bulb Shine Constraint Subfitness, Tournament Parent \& Survival Selection,
+    Plus Survival Strategy, Provided Puzzle}
+    \label{fig:tourny_web2}
+\end{figure}
+
+\begin{figure}
+    \addgraphic{website_puzzle/website_puzzle__tournament_parent__tournament_survival__plus__black_cell_constr}
+    \fitnessplotcaption{Black Cell Constraint Subfitness, Tournament Parent \& Survival Selection,
+    Plus Survival Strategy, Provided Puzzle}
+    \label{fig:tourny_web3}
+\end{figure}
+
+\begin{figure}
+    \addgraphic{random_gen/random_gen__tournament_parent__tournament_survival__plus__lit_cell_ratio}
+    \fitnessplotcaption{Lit Cell Ratio Subfitness, Tournament Parent \& Survival Selection, Plus
+    Survival Strategy, Randomly Generated Puzzle}
+    \label{fig:tourny_rand1}
+\end{figure}
+
+\begin{figure}
+    \addgraphic{random_gen/random_gen__tournament_parent__tournament_survival__plus__bulb_shine_constr}
+    \fitnessplotcaption{Bulb Shine Constraint Subfitness, Tournament Parent \& Survival Selection,
+    Plus Survival Strategy, Randomly Generated Puzzle}
+    \label{fig:tourny_rand2}
+\end{figure}
+
+\begin{figure}
+    \addgraphic{random_gen/random_gen__tournament_parent__tournament_survival__plus__black_cell_constr}
+    \fitnessplotcaption{Black Cell Constraint Subfitness, Tournament Parent \& Survival Selection,
+    Plus Survival Strategy, Randomly Generated Puzzle}
+    \label{fig:tourny_rand3}
+\end{figure}
 
 
-% Statistical Analysis Tables
+% Statistical Analysis Tables (Init)
 
 \begin{table}[] 
 \tablecaption{Uniform Random and Validity Enforced Uniform Random Initialized, Randomly Generated Puzzle, EA configurations}        
@@ -409,6 +445,165 @@ the document.}
   t Critical two-tail & 2.0395 &  \\ \hline 
   Nether website\_puzzle\_uniform\_random\_init nor & & \\
  website\_puzzle is statistically better &  &   \\ \hline 
+  \end{tabular}%     
+}                    
+\end{table}
+
+
+% Statistical Analysis Tables (In-Depth)
+
+\begin{table}[] 
+\caption{Subfitness Statistical Analysis performed against the Tournament Parent \& Survival Selection, Plus Survival Strategy, Provided Puzzle, EA Configuration}        
+\label{tourny_web1}                 
+\resizebox{\textwidth}{!}{%        
+\begin{tabular}{|l|l|l|}           
+\hline               
+  & website\_puzzle\_\_fitness\_proportional\_parent\_\_fitness\_proportional\_survival\_\_comma & website\_puzzle\_\_tournament\_parent\_\_tournament\_survival\_\_plus  \\ \hline 
+ mean & 0.03557475942533414 & 0.045719133121307036 \\ \hline 
+ variance & 1.0798324737368128e-06 & 4.716790367219106e-05 \\ \hline 
+ standard deviation & 0.001039149880304479 & 0.006867889317118547 \\ \hline 
+ observations & 30 & 30 \\ \hline 
+ df & 29 & 29 \\ \hline 
+ F & 0.022893374300487587 &   \\ \hline 
+ F critical & 0.5373999648406917 &   \\ \hline 
+ Unequal variances assumed &  &    \\ \hline 
+  &  &     \\ \hline 
+  observations & 30 &  \\ \hline 
+  df & 31 &  \\ \hline 
+  t Stat & -7.864765318971465 &  \\ \hline 
+  P two-tail & 8.251713123765557e-09 &  \\ \hline 
+  t Critical two-tail & 2.0395 &  \\ \hline 
+  website\_puzzle\_\_tournament\_parent\_\_tournament\_survival\_\_plus is statistically better than website\_puzzle\_\_fitness\_proportional\_parent\_\_fitness\_proportional\_survival\_\_comma &  &   \\ \hline 
+  \end{tabular}%     
+}                    
+\end{table}
+
+\begin{table}[] 
+\caption{Subfitness Statistical Analysis performed against the Tournament Parent \& Survival Selection, Plus Survival Strategy, Provided Puzzle, EA Configuration}        
+\label{tourny_web2}                 
+\resizebox{\textwidth}{!}{%        
+\begin{tabular}{|l|l|l|}           
+\hline               
+  & website\_puzzle\_\_fitness\_proportional\_parent\_\_fitness\_proportional\_survival\_\_comma & website\_puzzle\_\_tournament\_parent\_\_tournament\_survival\_\_plus  \\ \hline 
+ mean & 0.33063063063063064 & 0.3691441441441441 \\ \hline 
+ variance & 0.0004167681194708223 & 0.005361222709195682 \\ \hline 
+ standard deviation & 0.020414899447972364 & 0.07322037086218344 \\ \hline 
+ observations & 30 & 30 \\ \hline 
+ df & 29 & 29 \\ \hline 
+ F & 0.07773751289159707 &   \\ \hline 
+ F critical & 0.5373999648406917 &   \\ \hline 
+ Unequal variances assumed &  &    \\ \hline 
+  &  &     \\ \hline 
+  observations & 30 &  \\ \hline 
+  df & 31 &  \\ \hline 
+  t Stat & -2.728498473507591 &  \\ \hline 
+  P two-tail & 0.01005918482437467 &  \\ \hline 
+  t Critical two-tail & 2.0395 &  \\ \hline 
+  website\_puzzle\_\_tournament\_parent\_\_tournament\_survival\_\_plus is statistically better than website\_puzzle\_\_fitness\_proportional\_parent\_\_fitness\_proportional\_survival\_\_comma &  &   \\ \hline 
+  \end{tabular}%     
+}                    
+\end{table}
+
+\begin{table}[] 
+\caption{Subfitness Statistical Analysis performed against the Tournament Parent \& Survival Selection, Plus Survival Strategy, Provided Puzzle, EA Configuration}        
+\label{tourny_web3}                 
+\resizebox{\textwidth}{!}{%        
+\begin{tabular}{|l|l|l|}           
+\hline               
+  & website\_puzzle\_\_fitness\_proportional\_parent\_\_fitness\_proportional\_survival\_\_plus & website\_puzzle\_\_tournament\_parent\_\_tournament\_survival\_\_plus  \\ \hline 
+ mean & 0.03543878854223681 & 0.045719133121307036 \\ \hline 
+ variance & 6.924752843254994e-07 & 4.716790367219106e-05 \\ \hline 
+ standard deviation & 0.0008321509985125893 & 0.006867889317118547 \\ \hline 
+ observations & 30 & 30 \\ \hline 
+ df & 29 & 29 \\ \hline 
+ F & 0.014681069761719437 &   \\ \hline 
+ F critical & 0.5373999648406917 &   \\ \hline 
+ Unequal variances assumed &  &    \\ \hline 
+  &  &     \\ \hline 
+  observations & 30 &  \\ \hline 
+  df & 31 &  \\ \hline 
+  t Stat & -8.002369566124022 &  \\ \hline 
+  P two-tail & 6.4560972436788905e-09 &  \\ \hline 
+  t Critical two-tail & 2.0395 &  \\ \hline 
+  website\_puzzle\_\_tournament\_parent\_\_tournament\_survival\_\_plus is statistically better than website\_puzzle\_\_fitness\_proportional\_parent\_\_fitness\_proportional\_survival\_\_plus &  &   \\ \hline 
+  \end{tabular}%     
+}                    
+\end{table}
+
+\begin{table}[] 
+\caption{Subfitness Statistical Analysis performed against the Tournament Parent \& Survival Selection, Plus Survival Strategy, Randomly Generated Puzzle, EA Configuration}        
+\label{tourny_rand1}                 
+\resizebox{\textwidth}{!}{%        
+\begin{tabular}{|l|l|l|}           
+\hline               
+  & random\_gen\_\_fitness\_proportional\_parent\_\_fitness\_proportional\_survival\_\_comma & random\_gen\_\_tournament\_parent\_\_tournament\_survival\_\_plus  \\ \hline 
+ mean & 0.4827645502645503 & 1.0 \\ \hline 
+ variance & 0.3007261451597099 & 0.5472222222222223 \\ \hline 
+ standard deviation & 0.5483850336758926 & 0.7397447007057383 \\ \hline 
+ observations & 30 & 30 \\ \hline 
+ df & 29 & 29 \\ \hline 
+ F & 0.5495503160278963 &   \\ \hline 
+ F critical & 0.5373999648406917 &   \\ \hline 
+ Equal variances assumed &  &    \\ \hline 
+  &  &     \\ \hline 
+  observations & 30 &  \\ \hline 
+  df & 58 &  \\ \hline 
+  t Stat & -3.024841182589063 &  \\ \hline 
+  P two-tail & 0.003703278639359185 &  \\ \hline 
+  t Critical two-tail & 2.0017 &  \\ \hline 
+  random\_gen\_\_tournament\_parent\_\_tournament\_survival\_\_plus is statistically better than random\_gen\_\_fitness\_proportional\_parent\_\_fitness\_proportional\_survival\_\_comma &  &   \\ \hline 
+  \end{tabular}%     
+}                    
+\end{table}
+
+\begin{table}[] 
+\caption{Subfitness Statistical Analysis performed against the Tournament Parent \& Survival Selection, Plus Survival Strategy, Randomly Generated Puzzle, EA Configuration}        
+\label{tourny_rand2}                 
+\resizebox{\textwidth}{!}{%        
+\begin{tabular}{|l|l|l|}           
+\hline               
+  & random\_gen\_\_fitness\_proportional\_parent\_\_fitness\_proportional\_survival\_\_plus & random\_gen\_\_tournament\_parent\_\_tournament\_survival\_\_plus  \\ \hline 
+ mean & 0.561190476190476 & 1.0 \\ \hline 
+ variance & 0.42458320105820113 & 0.5472222222222223 \\ \hline 
+ standard deviation & 0.6516004919106501 & 0.7397447007057383 \\ \hline 
+ observations & 30 & 30 \\ \hline 
+ df & 29 & 29 \\ \hline 
+ F & 0.7758880831520426 &   \\ \hline 
+ F critical & 0.5373999648406917 &   \\ \hline 
+ Equal variances assumed &  &    \\ \hline 
+  &  &     \\ \hline 
+  observations & 30 &  \\ \hline 
+  df & 58 &  \\ \hline 
+  t Stat & -2.397095764759235 &  \\ \hline 
+  P two-tail & 0.019767792049039033 &  \\ \hline 
+  t Critical two-tail & 2.0017 &  \\ \hline 
+  random\_gen\_\_tournament\_parent\_\_tournament\_survival\_\_plus is statistically better than random\_gen\_\_fitness\_proportional\_parent\_\_fitness\_proportional\_survival\_\_plus &  &   \\ \hline 
+  \end{tabular}%     
+}                    
+\end{table}
+
+\begin{table}[] 
+\caption{Subfitness Statistical Analysis performed against the Tournament Parent \& Survival Selection, Plus Survival Strategy, Randomly Generated Puzzle, EA Configuration}        
+\label{tourny_rand3}                 
+\resizebox{\textwidth}{!}{%        
+\begin{tabular}{|l|l|l|}           
+\hline               
+  & random\_gen\_\_fitness\_proportional\_parent\_\_fitness\_proportional\_survival\_\_plus & random\_gen\_\_tournament\_parent\_\_tournament\_survival\_\_plus  \\ \hline 
+ mean & 0.35268032880882605 & 0.4864500836154015 \\ \hline 
+ variance & 0.01582075351042015 & 0.00448740286063112 \\ \hline 
+ standard deviation & 0.12578057684086263 & 0.06698807998913776 \\ \hline 
+ observations & 30 & 30 \\ \hline 
+ df & 29 & 29 \\ \hline 
+ F & 3.525592419886963 &   \\ \hline 
+ F critical & 0.5373999648406917 &   \\ \hline 
+ Equal variances assumed &  &    \\ \hline 
+  &  &     \\ \hline 
+  observations & 30 &  \\ \hline 
+  df & 58 &  \\ \hline 
+  t Stat & -5.055006060309308 &  \\ \hline 
+  P two-tail & 4.60221704581319e-06 &  \\ \hline 
+  t Critical two-tail & 2.0017 &  \\ \hline 
+  random\_gen\_\_tournament\_parent\_\_tournament\_survival\_\_plus is statistically better than random\_gen\_\_fitness\_proportional\_parent\_\_fitness\_proportional\_survival\_\_plus &  &   \\ \hline 
   \end{tabular}%     
 }                    
 \end{table}
