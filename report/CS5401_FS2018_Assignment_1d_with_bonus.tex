@@ -144,7 +144,7 @@ This conclusion was drawn because the Validity Enforced plus Uniform Random meth
 local best black cell constraints violated at each point on the graph, across all experiments.
 
 
-\section{Comparison of Parent Selection Strategy, Survival Strategy, and Survival Selection Strategy 
+\section{Comparison of Parent Selection Strategy, Survival Strategy, and Survival Selection Strategy
 MOEA Configurations}
 
 All combinations of the following MOEA configurations were compared, for both randomly generated 
@@ -229,10 +229,30 @@ of exploration over exploitation is integral in achieving more optimal results.
 %        ('../output/website_puzzle/website_puzzle__tournament_parent__tournament_survival__plus__last_best_local_black_constrs.txt',
 
 
-\section{BONUS \#1: Impact of Increasing Number of Objectives on Number of Non-Domination and MOEA Performance}
+\section{BONUS \#1: Impact of Increasing Number of Objectives on MOEA Performance}
+
+For the first bonus, a fourth subfitness was added to the MOEA, namely a constraint minimizing
+the number of bulbs placed on the board. This constraint directly contradicted one of the main
+measures of an EA's performance - the ratio of lit cells to the total number of white cells.
+For an MOEA to be successful with only the lit cell ratio, bulb shine constraint violations, and
+black cell constraint violations subfitnesses, it did not explicitly need to minimize the number 
+of bulbs
+placed. In fact, the only thing \textit{limiting} the number of bulbs placed on the board was the
+bulb shine constraint violation metric. By adding the fourth subfitness of minimizing the number
+of placed bulbs, the MOEA is more likely to be conservative regarding the placement of bulbs on
+a board, as now half of the four total subfitness metrics actively limit the number of placed bulbs.
+Although statistical analysis was not performed regarding the implication of an increased number
+of subfitness objectives and its impact on MOEA performance, the following hypothesis is offered
+instead: If a fourth subfitness objective is added which minimizes the number of bulbs placed
+on the board, the best level of non-domination will (overall, across many runs) prove to contain 
+genotypes with lower lit-cell ratios as the incentive for placing more bulbs will be limited
+while the incentive for lighting up many cells will stay the same.
 
 
 \section{Appendix: Figures and Tables}
+
+\textit{Note that figures and tables found in this section are referenced above in the body of 
+the document.}
 
 
 % Validity Enforced plus Uniform Random Init. Figures
