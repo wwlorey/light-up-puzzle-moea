@@ -191,18 +191,40 @@ subordinates for a given comparison, that configuration was marked as being bett
 dominance count associated with that configuration. The configuration(s) with the highest dominance count are statistically
 better than all other configurations tested for the given test puzzles.
 
-The randomly generated puzzle configurations yielded two configurations that were both equally as optimal. These were MOEAs configured 
-with (1) fitness proportional parent selection, tournament survival selection, and plus survival strategy and (2) tournament parent
-selection, tournament survival selection, and plus survival strategy. Both of these solutions each were dominant over two other configurations
-out of all the other configurations. They were either at least as good as or subordinate to the other configurations.
+The randomly generated puzzle configurations yielded two configurations that were both 
+equally as optimal (they both dominated two other configurations, while all other configurations
+dominated no other configurations). These were MOEAs configured 
+with (1) fitness proportional parent selection, tournament survival selection, 
+and plus survival strategy and (2) tournament parent
+selection, tournament survival selection, and plus survival strategy. 
+Both of these solutions each were dominant over two other configurations
+out of all the other configurations. They were either at least as good as or 
+subordinate to the other configurations.
+The outcome of these comparisons proved that for this MOEA tested against randomly generated 
+puzzles, the plus method for survival strategy is optimal, as both dominant 
+configurations employed this strategy for at least one selection. The results also showed 
+that relatively \textit{low} selection pressure for parent and survival
+selections led to better algorithm results. The binary tournament selection applies low selection
+pressure and is prevalent in both configurations - the first configuration used binary tournament 
+selection for survival selection while the second used a binary tournament selection for 
+both the parent 
+and survival selections. This method of selection favors exploration over exploitation in
+traversing the solution search space for optimal bulb placements.
 
 %        ('../output/random_gen/random_gen__fitness_proportional_parent__tournament_survival__plus__last_best_local_black_constrs.txt',
 
 %        ('../output/random_gen/random_gen__tournament_parent__tournament_survival__plus__last_best_local_black_constrs.txt',
 
-The provided puzzle configurations yielded one configuration that was optimal when compared to all other solutions. In fact,
-this configuration was the only solution found to be statistically better than all other configurations. This configuration involved
+The provided puzzle configurations yielded one configuration that was optimal when compared 
+to all other solutions. In fact,
+this configuration was the only solution found to be statistically better than all other 
+configurations. This configuration involved
 a tournament parent selection and tournament survival selection with a plus survival strategy.
+Similarly to the above dominance results, the results for the provided puzzle showed that 
+configurations employing a low selection pressure and a plus survival strategy produced better 
+results. This dominance was more prevalent for the provided puzzle, as the winning configuration
+dominated all other configurations. Again, this proves that for this particular MOEA, an approach
+of exploration over exploitation is integral in achieving more optimal results.
 
 %        ('../output/website_puzzle/website_puzzle__tournament_parent__tournament_survival__plus__last_best_local_black_constrs.txt',
 
